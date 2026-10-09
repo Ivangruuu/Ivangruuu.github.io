@@ -149,3 +149,9 @@
 
 /* OCR expertise panel */
 .expertise-panel.theme-ocr{--panel-accent:#7ee0d3;--panel-bg:#152c29}
+
+/* Profile actions alongside the about copy, directly below the photo. */
+.profile-column{width:100%;max-width:490px;min-width:0}
+.profile-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.profile-actions .button{padding-inline:10px;gap:8px;font-size:13px;white-space:nowrap}
+@media(max-width:760px){.profile-column{max-width:420px;justify-self:center}.profile-actions{gap:10px}.profile-actions .button{font-size:12px}}
