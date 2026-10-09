@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10120f">
+  <meta name="description" content="Иван Груздев — ML Engineer. Computer Vision, LLM и VLM. От данных до production.">
+  <title>Иван Груздев — ML Engineer</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23c4f568'/%3E%3Cpath d='M18 17h7v30h-7zm14 0h7v12l8-12h8L44 32l12 15h-9l-8-12v12h-7z' fill='%2310120f'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./content.js" defer></script><script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <header class="header wrap">
+    <a href="#" class="brand" aria-label="Иван Груздев, начало"><span class="brand-mark">ig<span>_</span></span><span class="brand-name">ИВАН ГРУЗДЕВ<br><small>ML ENGINEER</small></span></a>
+    <nav class="nav" aria-label="Основная навигация"><a href="#about">Обо мне</a><a href="#stack">Стек</a><a href="#work">Экспертиза</a><a href="#experience">Опыт</a></nav>
+    <a class="contact-link" href="#contact">Связаться <span class="small-star" aria-hidden="true">✳</span></a>
+    <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-top"><span class="eyebrow"><span class="status-dot"></span> ОТКРЫТ К ПРЕДЛОЖЕНИЯМ</span><span class="mono location">МОСКВА · УДАЛЁННО / ГИБРИД / ОФИС</span></div>
+      <div class="hero-grid">
+        <div class="hero-copy"><p class="hero-intro">Привет, я Иван.</p><h1 id="hero-title">Machine <br>Learning <br><span>Engineer<span class="title-period">.</span></span></h1><p class="hero-description">Зрение. Язык. Мультимодальность.<br>Превращаю данные в работающие<br class="desktop-break"> решения для реального бизнеса.</p><div class="hero-actions"><a class="button primary" href="#work">Моя экспертиза</a><a class="button secondary" href="./assets/ivan-gruzdev-resume.pdf" download="Иван-Груздев-ML-Engineer.pdf">Резюме PDF <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M5 16v4h14v-4"/></svg></a></div></div>
+      </div>
+      <div class="hero-bottom"><div><span class="mono muted">01 / ФОКУС</span><p>CV · LLM · VLM</p></div><div><span class="mono muted">02 / ПОДХОД</span><p>От датасета до production</p></div><a href="#about" class="scroll-cue"><span class="mouse"><i></i></span><span class="mono">ЛИСТАЙТЕ НИЖЕ</span></a></div>
+    </section>
+    <div class="ticker" aria-hidden="true"><div class="ticker-track">COMPUTER VISION <span>✳</span> LANGUAGE MODELS <span>✳</span> VISION LANGUAGE MODELS <span>✳</span> FROM DATA TO PRODUCTION <span>✳</span> COMPUTER VISION <span>✳</span> LANGUAGE MODELS <span>✳</span> VISION LANGUAGE MODELS <span>✳</span> FROM DATA TO PRODUCTION <span>✳</span></div></div>
+    <div id="sections"></div>
+    <section id="neural-field" class="neural-section wrap" aria-label="Анимация нейросети">
+        <div class="neural-stage"><div class="stage-corner top-left"></div><div class="stage-corner bottom-right"></div><span class="stage-label mono">NEURAL FIELD / 01</span><canvas id="neural" aria-label="Анимированная визуализация связей нейронной сети"></canvas><div class="stage-caption"><span class="mono">INPUT → LEARNING → IMPACT</span><span class="stage-state"><i></i> LIVE VISUALIZATION</span></div><span class="orbit-tag tag-one">Computer Vision</span><span class="orbit-tag tag-two">LLM</span><span class="orbit-tag tag-three">VLM</span><div class="stage-coordinates mono" aria-hidden="true">X 0.728<br>Y 0.416<br>Z 0.903</div></div>
+    </section>
+  </main>
+  <footer class="wrap footer"><a class="brand-mark" href="#" aria-label="В начало">ig<span>_</span></a><p>Иван Груздев <span>© 2026</span></p><span class="mono">BUILT WITH CURIOSITY.</span><a href="#">Наверх</a></footer>
+  <dialog id="detail-dialog"><button class="dialog-close" aria-label="Закрыть подробности">×</button><div id="dialog-content"></div></dialog>
+  <dialog id="video-dialog" class="video-screen" aria-labelledby="video-screen-title"><div class="video-screen-header"><span id="video-screen-title"></span><button class="video-screen-close" aria-label="Закрыть полноэкранное видео">×</button></div><div class="video-screen-stage"></div></dialog>
+  <div class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

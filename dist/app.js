@@ -1,0 +1,136 @@
+const canvas = document.querySelector('#neural');
+const ctx = canvas.getContext('2d');
+const motion = matchMedia('(prefers-reduced-motion: reduce)');
+let width=0, height=0, frame=0, rotation=0, pointerX=0, pointerY=0;
+const nodes = Array.from({length:340}, (_,i)=>{const y=1-2*(i+.5)/340;const r=Math.sqrt(1-y*y);const a=i*Math.PI*(3-Math.sqrt(5));return {x:Math.cos(a)*r,y,z:Math.sin(a)*r};});
+const links=[];nodes.forEach((a,i)=>nodes.forEach((b,j)=>{if(j>i && Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z)<.25)links.push([i,j]);}));
+function resize(){const rect=canvas.getBoundingClientRect();width=rect.width;height=rect.height;const dpr=Math.min(devicePixelRatio,2);canvas.width=width*dpr;canvas.height=height*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);if(motion.matches)draw();}
+function draw(){ctx.clearRect(0,0,width,height);const r=Math.min(width*.37,height*.37);const a=rotation+pointerX*.12;const tilt=.25+pointerY*.12;const projected=nodes.map(n=>{const x=n.x*Math.cos(a)+n.z*Math.sin(a);const z=n.z*Math.cos(a)-n.x*Math.sin(a);const y=n.y*Math.cos(tilt)-z*Math.sin(tilt);const zz=z*Math.cos(tilt)+n.y*Math.sin(tilt);return {x:width/2+x*r,y:height/2+y*r,z:zz};});
+ links.forEach(([i,j])=>{const p=projected[i],q=projected[j];ctx.strokeStyle=`rgba(183,238,103,${.035+Math.max(0,(p.z+q.z)/2+1)*.075})`;ctx.lineWidth=.6;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();});
+ projected.sort((a,b)=>a.z-b.z).forEach((p,i)=>{ctx.fillStyle=`rgba(${i%23===0?'237,255,212':'188,244,107'},${.13+(p.z+1)*.4})`;ctx.beginPath();ctx.arc(p.x,p.y,p.z>0?1.7:1,0,Math.PI*2);ctx.fill();if(i%41===0&&p.z>.2){ctx.strokeStyle='#c4f56840';ctx.beginPath();ctx.arc(p.x,p.y,5,0,Math.PI*2);ctx.stroke();}});
+ ctx.strokeStyle='#95b56513';ctx.lineWidth=1;ctx.beginPath();ctx.ellipse(width/2,height/2,r*1.23,r*.34,-.4,0,Math.PI*2);ctx.stroke();
+}
+function animate(){rotation+=.0022;draw();frame=requestAnimationFrame(animate);}
+new ResizeObserver(resize).observe(canvas);
+canvas.parentElement.addEventListener('pointermove',e=>{const r=canvas.getBoundingClientRect();pointerX=(e.clientX-r.left)/r.width-.5;pointerY=(e.clientY-r.top)/r.height-.5;});
+function syncAnimation(){cancelAnimationFrame(frame);if(!motion.matches&&!document.hidden)animate();else draw();}
+motion.addEventListener('change',syncAnimation);document.addEventListener('visibilitychange',syncAnimation);resize();syncAnimation();
+document.querySelector('.menu-toggle').addEventListener('click',()=>{const b=document.querySelector('.menu-toggle');const open=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',String(open));b.setAttribute('aria-label',open?'Закрыть меню':'Открыть меню');document.querySelector('.nav').classList.toggle('open',open);});
+document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>{document.querySelector('.nav').classList.remove('open');document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');document.querySelector('.menu-toggle').setAttribute('aria-label','Открыть меню');}));
+window.addEventListener('scroll',()=>{const max=document.documentElement.scrollHeight-innerHeight;document.querySelector('.scroll-progress').style.width=`${max>0?scrollY/max*100:0}%`;},{passive:true});
+
+const escapeHTML=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const content=window.resumeContent;
+const diagrams={
+ vision:`<svg viewBox="0 0 360 234" fill="none" aria-hidden="true"><defs><pattern id="cv-grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" stroke="#425036" stroke-opacity=".25"/></pattern></defs><rect width="360" height="234" fill="url(#cv-grid)"/><path d="M30 164L115 115L275 115L330 164L240 209H110Z" fill="#293520" stroke="#405334"/><path d="M30 164H330M75 138L156 186M126 115L209 164M195 115L279 164M110 209L196 164M177 209L263 164" stroke="#3d5031"/><g class="box-float"><path d="M100 100L148 73L196 100V151L148 177L100 151Z" fill="#40582d"/><path d="M100 100L148 127L196 100M148 127V177" stroke="#6b8f48"/><rect x="88" y="59" width="120" height="130" rx="1" stroke="#c4f568" stroke-width="1.2"/><rect x="88" y="45" width="67" height="14" fill="#c4f568"/><text x="93" y="55" fill="#192410" font-size="8" font-family="monospace">OBJECT_01</text><path d="M88 70V59H99M197 59H208V70M208 178V189H197M99 189H88V178" stroke="#e2ffb6" stroke-width="2"/></g><g class="box-float" style="animation-delay:-3s"><path d="M225 116L248 103L272 116V143L248 157L225 143Z" fill="#4c6235"/><path d="M225 116L248 130L272 116M248 130V157" stroke="#7c9e55"/><rect x="216" y="91" width="65" height="75" stroke="#9fbf72"/><text x="216" y="86" fill="#9fbf72" font-size="8" font-family="monospace">OBJECT_02</text></g><path class="scan-line" d="M35 117H325" stroke="#c4f568" stroke-opacity=".5"/><text x="18" y="22" fill="#7d916c" font-size="9" font-family="monospace">DETECTION / TRACKING</text><circle cx="334" cy="18" r="3" fill="#c4f568"/></svg>`,
+ language:`<svg viewBox="0 0 360 234" fill="none" aria-hidden="true"><rect x="35" y="44" width="290" height="157" rx="7" fill="#161f12" stroke="#415434"/><path d="M35 70H325" stroke="#415434"/><circle cx="49" cy="57" r="2.5" fill="#668650"/><circle cx="60" cy="57" r="2.5" fill="#668650"/><circle cx="71" cy="57" r="2.5" fill="#668650"/><text x="196" y="60" fill="#7f936d" font-size="8" font-family="monospace">LOCAL INFERENCE</text><text x="53" y="95" fill="#7f936d" font-size="9" font-family="monospace">~/models/llama</text><text x="53" y="118" fill="#c4f568" font-size="10" font-family="monospace">&gt; model.load()</text><rect x="53" y="132" width="45" height="15" rx="2" fill="#354d23" class="token-glow"/><rect x="104" y="132" width="69" height="15" rx="2" fill="#3c5828" class="token-glow" style="animation-delay:-.5s"/><rect x="179" y="132" width="38" height="15" rx="2" fill="#527433" class="token-glow" style="animation-delay:-1s"/><rect x="223" y="132" width="73" height="15" rx="2" fill="#354d23" class="token-glow" style="animation-delay:-1.5s"/><rect x="53" y="154" width="78" height="15" rx="2" fill="#4e6d33" class="token-glow" style="animation-delay:-2s"/><rect x="137" y="154" width="47" height="15" rx="2" fill="#354d23" class="token-glow" style="animation-delay:-2.5s"/><rect x="191" y="155" width="6" height="13" fill="#c4f568" class="blink"/><text x="18" y="22" fill="#7d916c" font-size="9" font-family="monospace">LLM · ON DEVICE</text></svg>`
+};
+diagrams.multimodal=`<svg viewBox="0 0 360 234" fill="none" aria-hidden="true"><text x="24" y="23" fill="#ac95c7" font-size="11" font-family="monospace">VISUAL + LANGUAGE CONTEXT</text><path d="M100 80H135L160 117M100 157H135L160 117M210 117H252" stroke="#876ba6" stroke-dasharray="4 4"/><rect x="25" y="55" width="78" height="50" rx="5" fill="#292034" stroke="#765b95"/><text x="44" y="85" fill="#d3b8fa" font-size="13" font-family="monospace">IMAGE</text><rect x="25" y="132" width="78" height="50" rx="5" fill="#292034" stroke="#765b95"/><text x="47" y="162" fill="#d3b8fa" font-size="13" font-family="monospace">TEXT</text><rect x="156" y="88" width="60" height="60" rx="10" fill="#3e2c50" stroke="#c5a0f5"/><text x="170" y="123" fill="#ead6ff" font-size="16" font-family="monospace">VLM</text><rect x="254" y="73" width="82" height="88" rx="5" fill="#292034" stroke="#765b95"/><path d="M269 94H319M269 106H310M269 118H317M269 130H299" stroke="#c5a0f5" stroke-width="2" class="token-glow"/><rect x="269" y="140" width="6" height="8" fill="#c5a0f5" class="blink"/><circle cx="136" cy="80" r="4" fill="#c5a0f5" class="token-glow"/><circle cx="136" cy="157" r="4" fill="#c5a0f5" class="token-glow" style="animation-delay:-1.5s"/><text x="35" y="213" fill="#ac95c7" font-size="10" font-family="monospace">TWO MODALITIES. ONE CONTEXT.</text></svg>`;
+diagrams.language=diagrams.language.replaceAll('#c4f568','#81d9f4').replaceAll('#161f12','#121e25').replaceAll('#415434','#345360').replaceAll('#354d23','#234957').replaceAll('#3c5828','#2b5d6d').replaceAll('#527433','#44879a').replaceAll('#4e6d33','#376a7a').replaceAll('#7f936d','#8caeba').replaceAll('#668650','#568493');
+function renderMedia(item,selectedClips=null,offset=0){
+ const clips=selectedClips || content.mediaGalleries?.[item.id] || [{src:content.media[item.id],poster:content.mediaPosters?.[item.id],title:item.title}];
+ return `<div class="media-gallery">${clips.map((clip,index)=>{
+   if(clip.type==='video' && ['language','multimodal'].includes(item.id)) return `<figure class="media-clip original-video model-demo"><div class="model-demo-player"><div class="media-frame" style="aspect-ratio:${clip.width||1900}/${clip.height||920}"><video src="${escapeHTML(clip.src)}" ${motion.matches?'':'autoplay'} loop muted playsinline preload="auto" width="${clip.width||1900}" height="${clip.height||920}" aria-label="${escapeHTML(clip.title)}"></video></div><div class="video-actions"><button class="video-toggle" data-title="${escapeHTML(clip.title)}" aria-label="${motion.matches?'Воспроизвести видео':'Остановить видео'}: ${escapeHTML(clip.title)}">${motion.matches?'Воспроизвести':'Пауза'}</button></div></div><figcaption class="model-demo-copy"><span class="section-index">КЕЙС / ${String(index+1).padStart(2,'0')}</span><h4>${escapeHTML(clip.title)}</h4><p class="media-summary">${escapeHTML(clip.summary)}</p><div class="card-tags">${(clip.tags||['Qwen','MLX','Local inference','JSON']).map(tag=>`<span class="pill">${escapeHTML(tag)}</span>`).join('')}</div></figcaption></figure>`;
+   if(clip.type==='video') return `<figure class="media-clip original-video"><div class="media-frame"><video src="${escapeHTML(clip.src)}" ${motion.matches?'':'autoplay'} loop muted playsinline preload="auto" width="1920" height="1080" aria-label="${escapeHTML(clip.title)}"></video></div><figcaption><span class="clip-number">${String(index+offset+1).padStart(2,'0')}</span><span>${escapeHTML(clip.title)}</span></figcaption>${clip.summary && item.id!=='vision'?`<p class="media-summary">${escapeHTML(clip.summary)}</p>`:''}<div class="video-actions"><button class="video-toggle" data-title="${escapeHTML(clip.title)}" aria-label="${motion.matches?'Воспроизвести видео':'Остановить видео'}: ${escapeHTML(clip.title)}">${motion.matches?'Воспроизвести':'Пауза'}</button></div></figure>`;
+   const paused=motion.matches&&!!clip.poster;
+   return `<figure class="media-clip"><div class="media-frame"><a class="media-preview-link" href="${escapeHTML(clip.src)}" target="_blank" rel="noopener" aria-label="Открыть демонстрацию: ${escapeHTML(clip.title)}"><img src="${escapeHTML(paused?clip.poster:clip.src)}" alt="${escapeHTML(clip.title)}" loading="lazy" width="720" height="405"></a>${clip.poster?`<button class="media-toggle" data-gif="${escapeHTML(clip.src)}" data-poster="${escapeHTML(clip.poster)}" data-title="${escapeHTML(clip.title)}" aria-pressed="${!paused}" aria-label="${paused?'Воспроизвести GIF':'Остановить GIF'}: ${escapeHTML(clip.title)}">${paused?'Воспроизвести':'Пауза'}</button>`:''}</div><figcaption><span class="clip-number">${String(index+offset+1).padStart(2,'0')}</span>${escapeHTML(clip.title)}</figcaption></figure>`;
+ }).join('')}</div>`;
+}
+function renderCV(item){
+ const clips=content.mediaGalleries.vision;
+ const tags=items=>items.map(tag=>`<span class="pill">${escapeHTML(tag)}</span>`).join('');
+ return `<section id="vision" class="cv-section theme-vision" aria-labelledby="cv-title"><header class="cv-overview"><div class="cv-overview-grid"><div><div class="card-category">${item.category}<span>/${item.number}</span></div><h3 id="cv-title">${escapeHTML(item.title)}</h3><p class="cv-description">${escapeHTML(item.description)}</p></div><div class="cv-overview-tools"><ul class="panel-highlights">${item.highlights.map(point=>`<li>${escapeHTML(point)}</li>`).join('')}</ul><div class="card-tags">${tags(item.tags)}</div><button class="detail-button" data-detail="vision" aria-label="Подробнее: Компьютерное зрение">Подробнее о направлении <span aria-hidden="true">+</span></button></div></div><nav class="cv-contents" aria-label="Кейсы Computer Vision">${clips.map((clip,index)=>`<a href="#${clip.id}"><span>${String(index+1).padStart(2,'0')}</span><strong>${escapeHTML(clip.shortTitle)}</strong><small>СМОТРЕТЬ КЕЙС</small></a>`).join('')}</nav></header><div class="cv-cases">${clips.map((clip,index)=>`<article id="${clip.id}" class="cv-case" aria-labelledby="${clip.id}-title"><div class="cv-case-media">${renderMedia(item,[clip],index)}</div><div class="cv-case-copy"><span class="section-index">КЕЙС / ${String(index+1).padStart(2,'0')}</span><h4 id="${clip.id}-title">${escapeHTML(clip.title)}</h4><p class="cv-case-summary">${escapeHTML(clip.summary)}</p><div class="cv-case-task"><span class="mono">ЗАДАЧА</span><p>${escapeHTML(clip.task)}</p></div><div class="card-tags">${tags(clip.tags)}</div></div></article>`).join('')}</div></section>`;
+}
+const cards=content.expertise.map(item=>item.id==='vision'?renderCV(item):`<article id="${item.id}" class="expertise-card expertise-panel theme-${item.id} reveal"><div class="panel-art"><div class="panel-art-top"><span class="panel-abbreviation">${item.short}</span><span class="mono">/ ${item.number}</span></div><div class="card-visual">${content.media[item.id]?renderMedia(item):diagrams[item.diagram]}</div><div class="panel-flow">${item.flow.map(step=>`<span>${escapeHTML(step)}</span>`).join('<i aria-hidden="true">/</i>')}</div></div><div class="card-body"><div class="card-category">${item.category}<span>/${item.number}</span></div><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.description)}</p><ul class="panel-highlights">${item.highlights.map(point=>`<li>${escapeHTML(point)}</li>`).join('')}</ul><div class="card-tags">${item.tags.map(t=>`<span class="pill">${escapeHTML(t)}</span>`).join('')}</div><button class="detail-button" data-detail="${item.id}" aria-label="Подробнее: ${escapeHTML(item.title)}">Подробнее о направлении <span aria-hidden="true">+</span></button></div></article>`).join('');
+const stacks=[['CORE',['Python','PyTorch','NumPy','pandas','scikit-learn','SQL']],['CV',['YOLO','ResNet','EfficientNet','CVAT','Tracking','Pose estimation','RTSP','ROI']],['LLM',['Qwen','Llama','DeepSeek','Ollama']],['VLM',['Qwen-VL','Llama Vision']],['RUNTIME',['MLX','Apple Silicon','Local inference','DB integration','Logging','Monitoring']]];
+document.querySelector('#sections').innerHTML=`
+ <section id="about" class="section wrap"><div class="section-top"><span class="section-index">01 / ОБО МНЕ</span><span class="mono">ENGINEERING WITH PURPOSE</span></div><div class="about-grid about-profile"><div class="profile-photo reveal">${content.portrait?`<img src="${escapeHTML(content.portrait)}" alt="Иван Груздев" width="640" height="640">`:''}</div><div class="about-copy reveal"><h2>Модели — это начало.<br><em>Результат —<br>работающая система.</em></h2><p>Я ML Engineer, занимаюсь <strong>компьютерным зрением, языковыми и мультимодальными моделями</strong>. Разрабатываю решения для промышленности, производства и ритейла.</p><p>Работаю с тремя направлениями: CV, LLM и VLM. Обучаю модели компьютерного зрения, развёртываю локальные языковые и мультимодальные модели, интегрирую их в работающие системы.</p><div class="about-tags"><span class="pill">Computer Vision</span><span class="pill">LLM</span><span class="pill">VLM</span></div></div></div><div class="fact-strip reveal"><div><div class="fact-number">2025<span> →</span></div><p>В коммерческой ML-разработке с января</p></div><div><div class="fact-number">End<span>-to-</span>end</div><p>Данные, модели и внедрение</p></div><div><div class="fact-number">3<span> сферы</span></div><p>CV · LLM · VLM</p></div></div></section>
+ <section id="stack" class="section wrap"><div class="section-top"><span class="section-index">02 / ИНСТРУМЕНТЫ</span><span class="mono">MY EVERYDAY TOOLKIT</span></div><div class="stack-layout"><div class="stack-intro reveal"><h2>Мой рабочий<br><em>стек.</em></h2><p>Инструменты, с которыми решаю задачи — от эксперимента до работающего сервиса.</p></div><div class="reveal">${stacks.map(([name,items])=>`<div class="stack-row"><span class="stack-label">${name}</span><div class="stack-items">${items.map(s=>`<span class="pill">${s}</span>`).join('')}</div></div>`).join('')}</div></div></section>
+ <section id="work" class="section wrap"><div class="section-top"><span class="section-index">03 / ЭКСПЕРТИЗА</span><span class="mono">FROM EXPERIMENT TO PRODUCTION</span></div><div class="work-heading reveal"><h2>С чем я работаю<span style="color:var(--accent)">.</span></h2><p>Компьютерное зрение, языковые и визуально-языковые модели. Три направления — три набора инструментов.</p></div><div class="expertise-grid expertise-panels">${cards}</div></section>
+ <section id="experience" class="section wrap"><div class="section-top"><span class="section-index">04 / ОПЫТ</span><span class="mono">APPLIED IN THE REAL WORLD</span></div><div class="experience-grid"><div class="experience-aside reveal"><h2>Технологии.<br><em>В деле.</em></h2><p>Коммерческие проекты для крупных корпоративных заказчиков.</p></div><article class="job reveal"><div class="job-date">ЯНВАРЬ 2025 — НАСТОЯЩЕЕ ВРЕМЯ</div><div class="job-header"><h3>Smart Solutions</h3><span class="pill">Москва</span></div><p class="job-role">ML Engineer</p><p class="job-summary">Разработка ML-решений для промышленности, производства и ритейла: от Computer Vision до локальных LLM/VLM.</p><ul class="job-points"><li>Подготовка датасетов, обучение и валидация моделей детекции, классификации и мультимодального анализа.</li><li>Inference-пайплайны для изображений и RTSP-потоков: трекинг, ROI-зоны, подсчёт и обработка событий.</li><li>Интеграция с базами данных и внешними системами, оптимизация производительности и стабильности.</li><li>Логирование, мониторинг и восстановление сервисов после сбоев.</li><li>Локальное развёртывание LLM/VLM и настройка inference.</li></ul></article></div></section>
+ <section id="education" class="section wrap"><div class="section-top"><span class="section-index">05 / ОБРАЗОВАНИЕ</span><span class="mono">ALWAYS LEARNING</span></div><h2 class="reveal">Основа. <em>И развитие.</em></h2><div class="education-grid"><article class="education-main reveal"><span class="section-index">БАКАЛАВРИАТ · ВЫПУСК 2027</span><h3>МИРЭА — Российский<br>технологический университет</h3><p>Искусственный интеллект и машинное обучение</p><div class="education-meta"><span>Институт кибербезопасности<br>и цифровых технологий</span><span>Москва</span></div></article><div class="reveal"><article class="course"><span class="section-index">SAMSUNG · 2024</span><h3>Искусственный интеллект и машинное зрение</h3><p>Повышение квалификации</p></article><article class="course"><span class="section-index">ИННОПОЛИС · 2024</span><h3>Цифровая кафедра: технологии DevOps</h3><p>Повышение квалификации</p></article><div class="language-row"><span>Русский · родной</span><span>Английский · B1</span></div></div></div></section>
+ <section id="contact" class="contact-section wrap"><div class="contact-top"><span class="section-index">06 / КОНТАКТЫ</span><span class="eyebrow"><span class="status-dot"></span> ОТКРЫТ К ПРЕДЛОЖЕНИЯМ</span></div><h2 class="reveal">Давайте создадим<br><span>что-то работающее.</span></h2><div class="contact-bottom reveal"><div><p>Рассматриваю позиции ML Engineer.<br>Полная занятость или стажировка,<br>удалённый, гибридный или офисный формат.</p><a class="contact-email" href="mailto:ivan.gru.05@mail.ru">ivan.gru.05@mail.ru</a><button class="copy-button" aria-label="Скопировать email"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4H4V16H8"/></svg></button><nav class="contact-socials" aria-label="Способы связи"><a href="https://t.me/Ivangruu1" target="_blank" rel="noopener noreferrer"><span>TELEGRAM</span><strong>@Ivangruu1</strong><i aria-hidden="true">↗</i></a><a href="https://vk.ru/ivangruu1" target="_blank" rel="noopener noreferrer"><span>VK</span><strong>ivangruu1</strong><i aria-hidden="true">↗</i></a><a href="tel:+79051484891"><span>ТЕЛЕФОН</span><strong>+7 (905) 148-48-91</strong><i aria-hidden="true">↗</i></a></nav></div></div></section>`;
+document.querySelector('#about').after(document.querySelector('#neural-field'));
+const revealObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObserver.unobserve(e.target);}}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+const sectionObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('active',a.hash===`#${e.target.id}`));}}),{rootMargin:'-15% 0px -60% 0px'});
+document.querySelectorAll('section[id]').forEach(el=>sectionObserver.observe(el));
+const dialog=document.querySelector('#detail-dialog');let lastDetail=null;
+document.querySelectorAll('[data-detail]').forEach(button=>button.addEventListener('click',()=>{const item=content.expertise.find(x=>x.id===button.dataset.detail);lastDetail=button;document.querySelector('#dialog-content').innerHTML=`<span class="section-index">${item.category} / ${item.number}</span><h2 class="dialog-title" id="dialog-title">${escapeHTML(item.title)}</h2><p>${escapeHTML(item.detail)}</p><ul>${item.points.map(p=>`<li>${escapeHTML(p)}</li>`).join('')}</ul><div class="card-tags">${item.tags.map(t=>`<span class="pill">${escapeHTML(t)}</span>`).join('')}</div>`;dialog.setAttribute('aria-labelledby','dialog-title');dialog.showModal();}));
+document.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());
+dialog.addEventListener('click',e=>{const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();});
+dialog.addEventListener('close',()=>lastDetail?.focus({preventScroll:true}));
+let toastTimer;const toast=message=>{const el=document.querySelector('.toast');el.textContent=message;el.classList.add('shown');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('shown'),2500);};
+document.querySelector('.copy-button').addEventListener('click',async()=>{try{await navigator.clipboard.writeText('ivan.gru.05@mail.ru');toast('Email скопирован');}catch{toast('Email: ivan.gru.05@mail.ru');}});
+
+function setMediaPlayback(button,playing){
+ button.closest('.media-frame').querySelector('img').src=playing?button.dataset.gif:button.dataset.poster;
+ button.setAttribute('aria-pressed',String(playing));
+ button.setAttribute('aria-label',`${playing?'Остановить GIF':'Воспроизвести GIF'}: ${button.dataset.title}`);
+ button.textContent=playing?'Пауза':'Воспроизвести';
+}
+document.querySelectorAll('.media-toggle').forEach(button=>button.addEventListener('click',()=>setMediaPlayback(button,button.getAttribute('aria-pressed')!=='true')));
+motion.addEventListener('change',()=>document.querySelectorAll('.media-toggle').forEach(button=>setMediaPlayback(button,!motion.matches)));
+
+const videoPlaybackButtons=new WeakMap();
+const videoDialog=document.querySelector('#video-dialog');
+const videoStage=videoDialog.querySelector('.video-screen-stage');
+let expandedVideo=null,videoNativeFullscreen=false;
+function syncVideoButton(video){
+ const button=videoPlaybackButtons.get(video);
+ button.textContent=video.paused?'Воспроизвести':'Пауза';
+ button.setAttribute('aria-label',`${video.paused?'Воспроизвести видео':'Остановить видео'}: ${button.dataset.title}`);
+}
+async function expandVideo(video,trigger){
+ const frame=video.closest('.media-frame');
+ const marker=document.createComment('video position');
+ const playing=!video.paused;
+ frame.before(marker);
+ expandedVideo={video,frame,marker,trigger,controls:video.controls};
+ document.querySelector('#video-screen-title').textContent=video.getAttribute('aria-label');
+ videoStage.append(frame);
+ video.controls=true;
+ videoDialog.showModal();
+ videoDialog.querySelector('.video-screen-close').focus();
+ if(playing)video.play().catch(()=>syncVideoButton(video));
+ // Keep an expanded player available when native fullscreen is unavailable.
+ if(videoDialog.requestFullscreen){try{await videoDialog.requestFullscreen();}catch{}}
+}
+videoDialog.querySelector('.video-screen-close').addEventListener('click',()=>videoDialog.close());
+videoDialog.addEventListener('close',()=>{
+ if(!expandedVideo)return;
+ const {video,frame,marker,trigger,controls}=expandedVideo;
+ const playing=!video.paused;
+ expandedVideo=null;
+ videoNativeFullscreen=false;
+ if(document.fullscreenElement===videoDialog)document.exitFullscreen().catch(()=>{});
+ marker.replaceWith(frame);
+ video.controls=controls;
+ if(playing)video.play().catch(()=>syncVideoButton(video));
+ syncVideoButton(video);
+ trigger.focus({preventScroll:true});
+});
+document.addEventListener('fullscreenchange',()=>{
+ if(document.fullscreenElement===videoDialog){videoNativeFullscreen=true;}
+ else if(videoNativeFullscreen){videoNativeFullscreen=false;if(videoDialog.open)videoDialog.close();}
+});
+
+document.querySelectorAll('.original-video').forEach(clip=>{
+ const video=clip.querySelector('video'), button=clip.querySelector('.video-toggle');
+ videoPlaybackButtons.set(video,button);
+ const expandButton=document.createElement('button');
+ expandButton.className='video-expand';
+ expandButton.type='button';
+ expandButton.setAttribute('aria-label',`Увеличить видео: ${button.dataset.title}`);
+ expandButton.title='На весь экран';
+ expandButton.innerHTML='<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+ video.closest('.media-frame').append(expandButton);
+ expandButton.addEventListener('click',()=>expandVideo(video,expandButton));
+ video.muted=true;
+ video.addEventListener('play',()=>syncVideoButton(video));
+ video.addEventListener('pause',()=>syncVideoButton(video));
+ button.addEventListener('click',async()=>{if(video.paused){try{await video.play();}catch{toast('Откройте оригинал видео для воспроизведения');}}else video.pause();});
+ if(!motion.matches) video.play().catch(()=>syncVideoButton(video));
+ video.closest('.expertise-panel')?.classList.remove('reveal');
+});
+motion.addEventListener('change',()=>document.querySelectorAll('.original-video video').forEach(video=>{if(motion.matches)video.pause();else video.play().catch(()=>syncVideoButton(video));}));
