@@ -163,3 +163,15 @@ body{isolation:isolate}
 @media(max-width:760px){.neural-background{opacity:.25}}
 
 .profile-name{margin:0 0 16px;font-size:clamp(26px,2.5vw,36px);font-weight:600;line-height:1.2;letter-spacing:-.04em}
+
+/* Give the toolkit enough contrast over the neural background. */
+.stack-list{min-width:0;padding:26px;border:1px solid #445139;border-radius:12px;background:#141911ed}
+.stack-list .stack-row{border-bottom-color:#445139}
+.stack-list .stack-label{color:var(--accent);font-weight:500;letter-spacing:.05em}
+.stack-list .stack-items .pill{color:#f1f5eb;background:#252e1f;border-color:#62734e;font-weight:500}
+@media(max-width:760px){.stack-list{padding:20px 16px}.stack-list .stack-row{grid-template-columns:72px 1fr;gap:12px}}
+
+/* Separate the opening title from the profile section. */
+.hero{position:relative;padding-bottom:28px}
+.hero::after{content:'';display:block;height:1px;background:linear-gradient(90deg,#c4f56899 0%,#9abc6159 18%,#657c4033 45%,#4550391a 72%,transparent 100%)}
+@media(max-width:760px){.hero{padding-bottom:16px}}
