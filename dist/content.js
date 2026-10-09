@@ -1,6 +1,6 @@
 // Add local image/GIF paths here, e.g. './assets/detection.gif'. Empty slots use animated diagrams.
 window.resumeContent = {
-  portrait: './assets/ivan-gruzdev.png',
+  portrait: './assets/ivan-gruzdev.png?v=20261009-2339',
   media: { vision: './assets/cv-original-51.mp4', language: './assets/llm-qwen-terminal-cropped.mp4', multimodal: './assets/vlm-qwen-terminal-57.mp4' },
   mediaPosters: { vision: './assets/cv-demo-poster.jpg' },
   mediaGalleries: {
