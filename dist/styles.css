@@ -122,7 +122,7 @@
 .cv-description{font-size:17px;line-height:1.8;color:var(--muted);margin:0;max-width:520px}
 .cv-overview .detail-button{font-size:14px;margin-top:22px}
 .cv-overview .card-tags .pill,.cv-case .card-tags .pill{font-size:12px;color:#c7d7b4;border-color:#3f5130;padding:5px 9px}
-.cv-contents{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px;padding-top:28px;border-top:1px solid var(--line)}
+.cv-contents{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:32px;padding-top:28px;border-top:1px solid var(--line)}
 .cv-contents a{display:grid;grid-template-columns:28px 1fr;align-items:baseline;gap:6px 10px;padding:17px;background:#0c100940;border:1px solid #344329;border-radius:7px;transition:border-color .2s,background .2s}
 .cv-contents a:hover{border-color:var(--accent);background:#c4f56808}
 .cv-contents a>span{font:12px var(--mono);color:var(--accent)}
