@@ -87,7 +87,17 @@ function renderLanguage(item){
  </article>`;
 }
 
-const cards=content.expertise.map(item=>item.id==='vision'?renderCV(item):item.id==='language'?renderLanguage(item):`<article id="${item.id}" class="expertise-card expertise-panel theme-${item.id} reveal"><div class="panel-art"><div class="panel-art-top"><span class="panel-abbreviation">${item.short}</span><span class="mono">/ ${item.number}</span></div><div class="card-visual">${content.media[item.id]?renderMedia(item):diagrams[item.diagram]}</div><div class="panel-flow">${item.flow.map(step=>`<span>${escapeHTML(step)}</span>`).join('<i aria-hidden="true">/</i>')}</div></div><div class="card-body"><div class="card-category">${item.category}<span>/${item.number}</span></div><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.description)}</p><ul class="panel-highlights">${item.highlights.map(point=>`<li>${escapeHTML(point)}</li>`).join('')}</ul><div class="card-tags">${item.tags.map(t=>`<span class="pill">${escapeHTML(t)}</span>`).join('')}</div><button class="detail-button" data-detail="${item.id}" aria-label="Подробнее: ${escapeHTML(item.title)}">Подробнее о направлении <span aria-hidden="true">+</span></button></div></article>`).join('');
+function renderMultimodal(item){
+ return `<article id="multimodal" class="expertise-card expertise-panel theme-multimodal vlm-section" aria-labelledby="vlm-title">
+  <header class="language-overview">
+   <div class="card-category">${item.category}<span>/${item.number}</span></div>
+   <h3 id="vlm-title">${escapeHTML(item.title)}</h3>
+   <p>Развёртываю и интегрирую визуально-языковые модели для анализа изображений по текстовому запросу. Настраиваю промпты, обработку структурированных ответов и работу моделей на доступном оборудовании.</p>
+  </header>
+  <div class="vlm-case">${renderMedia(item)}</div>
+ </article>`;
+}
+const cards=content.expertise.map(item=>item.id==='vision'?renderCV(item):item.id==='language'?renderLanguage(item):item.id==='multimodal'?renderMultimodal(item):`<article id="${item.id}" class="expertise-card expertise-panel theme-${item.id} reveal"><div class="panel-art"><div class="panel-art-top"><span class="panel-abbreviation">${item.short}</span><span class="mono">/ ${item.number}</span></div><div class="card-visual">${content.media[item.id]?renderMedia(item):diagrams[item.diagram]}</div><div class="panel-flow">${item.flow.map(step=>`<span>${escapeHTML(step)}</span>`).join('<i aria-hidden="true">/</i>')}</div></div><div class="card-body"><div class="card-category">${item.category}<span>/${item.number}</span></div><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.description)}</p><ul class="panel-highlights">${item.highlights.map(point=>`<li>${escapeHTML(point)}</li>`).join('')}</ul><div class="card-tags">${item.tags.map(t=>`<span class="pill">${escapeHTML(t)}</span>`).join('')}</div><button class="detail-button" data-detail="${item.id}" aria-label="Подробнее: ${escapeHTML(item.title)}">Подробнее о направлении <span aria-hidden="true">+</span></button></div></article>`).join('');
 const stacks=[
  ['CORE',['Python','PyTorch','NumPy','pandas','scikit-learn','SQL']],
  ['CV',['OpenCV','YOLO / YOLO Pose','ResNet','EfficientNet','ByteTrack','CVAT']],
