@@ -143,3 +143,9 @@
 .cv-case .panel-highlights li{font-size:14px;line-height:1.7}
 @media(max-width:1000px){.cv-overview{padding:30px}.cv-overview-grid{gap:35px}.cv-case{gap:25px;padding:25px}.cv-contents strong{font-size:14px}.cv-contents a{grid-template-columns:22px 1fr;padding:14px;gap:6px}}
 @media(max-width:760px){.cv-overview{padding:26px 22px}.cv-overview-grid{grid-template-columns:1fr;gap:26px}.cv-overview h3{font-size:30px;margin-block:15px}.cv-description{font-size:16px}.cv-contents{grid-template-columns:1fr;gap:10px;margin-top:24px;padding-top:22px}.cv-contents a{grid-template-columns:26px 1fr auto;gap:10px;padding:15px}.cv-contents small{grid-column:3;font-size:9px}.cv-contents strong{font-size:14px}.cv-case{grid-template-columns:1fr;padding:22px 20px;gap:24px}.cv-case h4{font-size:25px}.cv-case-summary{font-size:16px}.cv-case .section-index{font-size:11px}}
+
+/* NLP expertise panel */
+.expertise-panel.theme-nlp{--panel-accent:#f2c185;--panel-bg:#261f17}
+
+/* OCR expertise panel */
+.expertise-panel.theme-ocr{--panel-accent:#7ee0d3;--panel-bg:#152c29}
