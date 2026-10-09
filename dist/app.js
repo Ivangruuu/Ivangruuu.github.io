@@ -12,7 +12,6 @@ function draw(){ctx.clearRect(0,0,width,height);const r=Math.min(width*.37,heigh
 }
 function animate(){rotation+=.0022;draw();frame=requestAnimationFrame(animate);}
 new ResizeObserver(resize).observe(canvas);
-canvas.parentElement.addEventListener('pointermove',e=>{const r=canvas.getBoundingClientRect();pointerX=(e.clientX-r.left)/r.width-.5;pointerY=(e.clientY-r.top)/r.height-.5;});
 function syncAnimation(){cancelAnimationFrame(frame);if(!motion.matches&&!document.hidden)animate();else draw();}
 motion.addEventListener('change',syncAnimation);document.addEventListener('visibilitychange',syncAnimation);resize();syncAnimation();
 document.querySelector('.menu-toggle').addEventListener('click',()=>{const b=document.querySelector('.menu-toggle');const open=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',String(open));b.setAttribute('aria-label',open?'Закрыть меню':'Открыть меню');document.querySelector('.nav').classList.toggle('open',open);});
@@ -55,7 +54,6 @@ document.querySelector('#sections').innerHTML=`
 const profileActions=document.querySelector('.hero-actions');
 profileActions.className='profile-actions';
 document.querySelector('.profile-column').append(profileActions);
-document.querySelector('#about').after(document.querySelector('#neural-field'));
 const revealObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObserver.unobserve(e.target);}}),{threshold:.08});
 document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
 const sectionObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('active',a.hash===`#${e.target.id}`));}}),{rootMargin:'-15% 0px -60% 0px'});

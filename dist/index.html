@@ -10,6 +10,7 @@
   <script src="./content.js" defer></script><script src="./app.js" defer></script>
 </head>
 <body>
+  <div class="neural-background" aria-hidden="true"><canvas id="neural"></canvas></div>
   <a class="skip-link" href="#main">Перейти к содержимому</a>
   <div class="scroll-progress" aria-hidden="true"></div>
   <header class="header wrap">
@@ -26,9 +27,6 @@
       </div>
     </section>
     <div id="sections"></div>
-    <section id="neural-field" class="neural-section wrap" aria-label="Анимация нейросети">
-        <div class="neural-stage"><div class="stage-corner top-left"></div><div class="stage-corner bottom-right"></div><span class="stage-label mono">NEURAL FIELD / 01</span><canvas id="neural" aria-label="Анимированная визуализация связей нейронной сети"></canvas><div class="stage-caption"><span class="mono">INPUT → LEARNING → IMPACT</span><span class="stage-state"><i></i> LIVE VISUALIZATION</span></div><span class="orbit-tag tag-one">Computer Vision</span><span class="orbit-tag tag-two">LLM</span><span class="orbit-tag tag-three">VLM</span><div class="stage-coordinates mono" aria-hidden="true">X 0.728<br>Y 0.416<br>Z 0.903</div></div>
-    </section>
   </main>
   <footer class="wrap footer"><a class="brand-mark" href="#" aria-label="В начало">ig<span>_</span></a><p>Иван Груздев <span>© 2026</span></p><span class="mono">BUILT WITH CURIOSITY.</span><a href="#">Наверх</a></footer>
   <dialog id="detail-dialog"><button class="dialog-close" aria-label="Закрыть подробности">×</button><div id="dialog-content"></div></dialog>

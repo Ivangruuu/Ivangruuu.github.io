@@ -155,3 +155,9 @@
 .profile-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
 .profile-actions .button{padding-inline:10px;gap:8px;font-size:13px;white-space:nowrap}
 @media(max-width:760px){.profile-column{max-width:420px;justify-self:center}.profile-actions{gap:10px}.profile-actions .button{font-size:12px}}
+
+/* Persistent decorative neural field, outside the document flow. */
+body{isolation:isolate}
+.neural-background{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;opacity:.35}
+.neural-background #neural{display:block;width:100%;height:100%}
+@media(max-width:760px){.neural-background{opacity:.25}}
