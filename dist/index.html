@@ -1,53 +1,1235 @@
 <!doctype html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#10120f">
-  <meta name="description" content="Иван Груздев — ML Engineer. Computer Vision, LLM, VLM, OCR и NLP. От данных до production.">
-  <title>Иван Груздев — ML Engineer</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23c4f568'/%3E%3Cpath d='M18 17h7v30h-7zm14 0h7v12l8-12h8L44 32l12 15h-9l-8-12v12h-7z' fill='%2310120f'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="./styles.css?v=6e4be46b6e">
-  <script src="./content.js?v=ae890509e6" defer></script><script src="./app.js?v=2fc723a2f3" defer></script>
-</head>
-<body>
-  <div class="neural-background" aria-hidden="true"><canvas id="neural"></canvas></div>
-  <a class="skip-link" href="#main">Перейти к содержимому</a>
-  <div class="scroll-progress" aria-hidden="true"></div>
-  <header class="header wrap">
-    <a href="#" class="brand" aria-label="Иван Груздев, начало"><span class="brand-mark">ig<span>_</span></span><span class="brand-name">ИВАН ГРУЗДЕВ<br><small>ML ENGINEER</small></span></a>
-    <nav class="nav" aria-label="Основная навигация"><a href="#about">Обо мне</a><a href="#experience">Опыт</a><a href="#work">Кейсы</a><a href="#stack">Стек</a><a href="#education">Образование</a></nav>
-    <a class="contact-link" href="#contact">Связаться <span class="small-star" aria-hidden="true">✳</span></a>
-    <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span></button>
-  </header>
-  <main id="main">
-    <section class="hero wrap" aria-labelledby="hero-title">
-      <div class="hero-top"><span class="eyebrow"><span class="status-dot"></span> ОТКРЫТ К ПРЕДЛОЖЕНИЯМ</span><span class="mono location">МОСКВА · УДАЛЁННО / ГИБРИД</span></div>
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <p class="hero-name">Иван Груздев</p>
-          <h1 id="hero-title">ML <span>Engineer<span class="title-period">.</span></span></h1>
-          <p class="hero-experience">Коммерческий опыт с августа 2024</p>
-          <p class="hero-description">Разрабатываю и внедряю ML-решения для промышленности и ритейла. Работаю с компьютерным зрением, языковыми и мультимодальными моделями, распознаванием текста и обработкой естественного языка — от подготовки данных до интеграции в работающие системы.</p>
-          <nav class="hero-directions" aria-label="Направления работы">
-            <a href="#vision" aria-label="CV — Компьютерное зрение">CV <span aria-hidden="true">↗</span></a>
-            <a href="#language" aria-label="LLM — Большие языковые модели">LLM <span aria-hidden="true">↗</span></a>
-            <a href="#multimodal" aria-label="VLM — Визуально-языковые модели">VLM <span aria-hidden="true">↗</span></a>
-            <a href="#ocr" aria-label="OCR — Распознавание текста">OCR <span aria-hidden="true">↗</span></a>
-            <a href="#nlp" aria-label="NLP — Обработка естественного языка">NLP <span aria-hidden="true">↗</span></a>
-          </nav>
-          <div class="hero-actions">
-            <a class="button primary" href="./assets/ivan-gruzdev-resume.pdf?v=2f3832f477" download="Иван-Груздев-ML-Engineer.pdf">Резюме PDF <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M5 16v4h14v-4"/></svg></a>
-            <a class="button secondary" href="#work">Кейсы <span aria-hidden="true">↗</span></a>
-            <a class="hero-telegram" href="https://t.me/Ivangruu1" target="_blank" rel="noopener noreferrer">Telegram <span aria-hidden="true">↗</span></a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#10120f" />
+    <meta
+      name="description"
+      content="Иван Груздев - ML Engineer. Computer Vision, LLM, VLM, OCR и NLP. От данных до production."
+    />
+    <link rel="canonical" href="https://ivangruuu.github.io/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:title" content="Иван Груздев - ML Engineer" />
+    <meta
+      property="og:description"
+      content="Computer Vision, LLM, VLM, OCR и NLP. Кейсы, опыт и контакты."
+    />
+    <meta property="og:url" content="https://ivangruuu.github.io/" />
+    <meta
+      property="og:image"
+      content="https://ivangruuu.github.io/assets/social-preview.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Иван Груздев - ML Engineer. CV · LLM · VLM · OCR · NLP"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Иван Груздев - ML Engineer</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23c4f568'/%3E%3Cpath d='M18 17h7v30h-7zm14 0h7v12l8-12h8L44 32l12 15h-9l-8-12v12h-7z' fill='%2310120f'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="./styles.css?v=4e6f612bea" />
+    <script src="./app.js?v=a734c1049e" defer></script>
+    <script src="./animation.js?v=7cc18ecd8f" defer></script>
+  </head>
+  <body>
+    <div class="neural-background" aria-hidden="true">
+      <canvas id="neural"></canvas>
+    </div>
+    <a class="skip-link" href="#main">Перейти к содержимому</a>
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <header class="header wrap">
+      <a href="#" class="brand" aria-label="Иван Груздев, начало"
+        ><span class="brand-mark">ig<span>_</span></span
+        ><span class="brand-name"
+          >ИВАН ГРУЗДЕВ<br /><small>ML ENGINEER</small></span
+        ></a
+      >
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#about">Обо мне</a><a href="#experience">Опыт</a
+        ><a href="#work">Кейсы</a><a href="#stack">Стек</a
+        ><a href="#education">Образование</a>
+      </nav>
+      <a class="contact-link" href="#contact"
+        >Связаться <span class="small-star" aria-hidden="true">✳</span></a
+      >
+      <button
+        class="menu-toggle"
+        aria-label="Открыть меню"
+        aria-expanded="false"
+      >
+        <span></span><span></span>
+      </button>
+    </header>
+    <main id="main">
+      <section class="hero wrap" aria-labelledby="hero-title">
+        <div class="hero-top">
+          <span class="eyebrow"
+            ><span class="status-dot"></span> ОТКРЫТ К ПРЕДЛОЖЕНИЯМ</span
+          ><span class="mono location">МОСКВА · УДАЛЁННО / ГИБРИД</span>
+        </div>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="hero-name">Иван Груздев</p>
+            <h1 id="hero-title">
+              ML <span>Engineer<span class="title-period">.</span></span>
+            </h1>
+            <p class="hero-experience">Коммерческий опыт с августа 2024</p>
+            <p class="hero-description">
+              Разрабатываю и внедряю ML-системы для промышленности и ритейла:
+              видеоаналитику, распознавание текста и решения на базе локальных
+              языковых и мультимодальных моделей. Работаю от подготовки данных и
+              обучения моделей до интеграции и поддержки.
+            </p>
+            <nav class="hero-directions" aria-label="Направления работы">
+              <a href="#vision" aria-label="CV - Компьютерное зрение"
+                >CV <span aria-hidden="true">↗</span></a
+              >
+              <a href="#language" aria-label="LLM - Большие языковые модели"
+                >LLM <span aria-hidden="true">↗</span></a
+              >
+              <a href="#multimodal" aria-label="VLM - Визуально-языковые модели"
+                >VLM <span aria-hidden="true">↗</span></a
+              >
+              <a href="#ocr" aria-label="OCR - Распознавание текста"
+                >OCR <span aria-hidden="true">↗</span></a
+              >
+              <a href="#nlp" aria-label="NLP - Обработка естественного языка"
+                >NLP <span aria-hidden="true">↗</span></a
+              >
+            </nav>
+            <div class="hero-actions">
+              <a
+                class="button primary"
+                href="./assets/ivan-gruzdev-resume.pdf?v=24d821c571"
+                download="Иван-Груздев-ML-Engineer.pdf"
+                >Резюме PDF
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 3v12m-4-4 4 4 4-4M5 16v4h14v-4" /></svg
+              ></a>
+              <a class="button secondary" href="#work"
+                >Кейсы <span aria-hidden="true">↗</span></a
+              >
+              <a
+                class="hero-telegram"
+                href="https://t.me/Ivangruu1"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Telegram <span aria-hidden="true">↗</span></a
+              >
+            </div>
           </div>
         </div>
+      </section>
+      <div id="sections">
+        <section id="about" class="section wrap">
+          <div class="section-top">
+            <span class="section-index">01 / ОБО МНЕ</span
+            ><span class="mono">ENGINEERING WITH PURPOSE</span>
+          </div>
+          <div class="about-grid about-profile">
+            <div class="profile-column reveal">
+              <p class="profile-name">Иван Груздев</p>
+              <div class="profile-photo">
+                <img
+                  src="./assets/ivan-gruzdev.png?v=20261009-2339"
+                  alt="Иван Груздев"
+                  width="640"
+                  height="640"
+                />
+              </div>
+            </div>
+            <div class="about-copy reveal">
+              <h2>
+                Модели - это начало.<br /><em
+                  >Результат - работающая система.</em
+                >
+              </h2>
+              <p>
+                Я ML Engineer, занимаюсь
+                <strong
+                  >компьютерным зрением, обработкой естественного языка,
+                  языковыми и мультимодальными моделями</strong
+                >. Разрабатываю решения для промышленности, производства и
+                ритейла.
+              </p>
+              <p>
+                Работаю с пятью направлениями: CV, LLM, VLM, OCR и NLP. Обучаю
+                модели компьютерного зрения, развёртываю локальные языковые и
+                мультимодальные модели через Ollama и MLX, интегрирую их в
+                работающие системы.
+              </p>
+              <p>
+                Также решал задачи NLP: предобработка и классификация текстов,
+                анализ тональности и эмоций, извлечение сущностей, семантический
+                поиск и кластеризация.
+              </p>
+              <p>
+                Использую OpenCV и Tesseract / pytesseract для предобработки
+                изображений и распознавания текста на документах, фотографиях и
+                кадрах с камер.
+              </p>
+              <div class="about-tags">
+                <span class="pill">CV</span><span class="pill">LLM</span
+                ><span class="pill">VLM</span><span class="pill">OCR</span
+                ><span class="pill">NLP</span>
+              </div>
+            </div>
+          </div>
+          <div class="fact-strip reveal">
+            <div>
+              <div class="fact-number">2024<span> →</span></div>
+              <p>В коммерческой ML-разработке с августа</p>
+            </div>
+            <div>
+              <div class="fact-number">End<span>-to-</span>end</div>
+              <p>Данные, модели и внедрение</p>
+            </div>
+            <div>
+              <div class="fact-number">5<span> сфер</span></div>
+              <p>CV · LLM · VLM · OCR · NLP</p>
+            </div>
+          </div>
+        </section>
+        <section
+          id="experience"
+          class="section wrap experience-summary"
+          aria-labelledby="experience-title"
+        >
+          <div class="section-top">
+            <span class="section-index">02 / ОПЫТ</span
+            ><span class="mono">APPLIED IN THE REAL WORLD</span>
+          </div>
+          <div class="experience-summary-grid">
+            <aside class="experience-profile">
+              <h2 id="experience-title">Коммерческий<br /><em>опыт.</em></h2>
+              <p class="experience-context">
+                Работаю над ML-решениями для промышленности, производства и
+                ритейла - от данных и моделей до интеграции и поддержки.
+              </p>
+            </aside>
+            <article class="job">
+              <div class="job-date">АВГУСТ 2024 - НАСТОЯЩЕЕ ВРЕМЯ</div>
+              <div class="job-header">
+                <h3>ООО «Smart Solutions»</h3>
+                <span class="pill">Москва</span>
+              </div>
+              <p class="job-role">ML Engineer</p>
+              <ul class="job-points">
+                <li>
+                  <strong>Данные и модели.</strong> Подготовка и разметка
+                  датасетов, обучение и дообучение моделей детекции,
+                  классификации и мультимодального анализа.
+                </li>
+                <li>
+                  <strong>Прикладные пайплайны.</strong> Обработка изображений и
+                  RTSP-потоков, трекинг, ROI-зоны, подсчёт объектов и обработка
+                  событий.
+                </li>
+                <li>
+                  <strong>Интеграция и поддержка.</strong> Подключение
+                  CV-сервисов к базам данных и внешним системам, логирование,
+                  мониторинг и восстановление после сбоев.
+                </li>
+                <li>
+                  <strong>Локальные LLM/VLM.</strong> Развёртывание и интеграция
+                  моделей, настройка inference под оборудование заказчика,
+                  включая Apple Silicon и MLX.
+                </li>
+              </ul>
+              <a class="experience-cases-link" href="#work"
+                >Направления и примеры работ
+                <span aria-hidden="true">↗</span></a
+              >
+            </article>
+          </div>
+        </section>
+        <section id="work" class="section wrap">
+          <div class="section-top">
+            <span class="section-index">03 / НАПРАВЛЕНИЯ И КЕЙСЫ</span
+            ><span class="mono">FROM EXPERIMENT TO PRODUCTION</span>
+          </div>
+          <div class="work-heading reveal">
+            <h2>Пять направлений<span style="color: var(--accent)">.</span></h2>
+            <p>
+              Задачи, подходы и демонстрации работы с изображениями и текстом.
+            </p>
+          </div>
+          <div class="expertise-grid expertise-panels">
+            <section
+              id="vision"
+              class="cv-section theme-vision"
+              aria-labelledby="cv-title"
+            >
+              <header class="cv-overview cv-overview-compact">
+                <div class="card-category">COMPUTER VISION<span>/01</span></div>
+                <h3 id="cv-title">Компьютерное зрение</h3>
+                <p class="cv-description">
+                  Разрабатываю системы видеоаналитики: детекцию, классификацию,
+                  трекинг и оценку позы. Работаю с данными, обучением моделей,
+                  обработкой видеопотоков и интеграцией результатов в прикладные
+                  системы.
+                </p>
+                <nav class="cv-contents" aria-label="Кейсы Computer Vision">
+                  <a href="#cv-case-line"
+                    ><span>01</span><strong>Подсчёт продукции</strong
+                    ><small>СМОТРЕТЬ КЕЙС</small></a
+                  ><a href="#cv-case-roi"
+                    ><span>02</span><strong>Контроль контейнеров</strong
+                    ><small>СМОТРЕТЬ КЕЙС</small></a
+                  ><a href="#cv-case-pose"
+                    ><span>03</span><strong>Анализ людей</strong
+                    ><small>СМОТРЕТЬ КЕЙС</small></a
+                  >
+                </nav>
+              </header>
+              <div class="cv-cases">
+                <article
+                  id="cv-case-line"
+                  class="cv-case"
+                  aria-labelledby="cv-case-line-title"
+                >
+                  <div class="cv-case-media">
+                    <div class="media-gallery">
+                      <figure class="media-clip original-video">
+                        <div
+                          class="media-frame"
+                          style="aspect-ratio: 1920/1080"
+                        >
+                          <video
+                            data-src="./assets/cv-original-51.mp4"
+                            poster="./assets/cv-original-51-poster.jpg"
+                            loop
+                            muted
+                            playsinline
+                            preload="none"
+                            controls
+                            width="1920"
+                            height="1080"
+                            aria-label="Подсчёт продукции на конвейере"
+                          ></video
+                          ><noscript
+                            ><a
+                              class="video-fallback"
+                              href="./assets/cv-original-51.mp4"
+                              >Открыть видео ↗</a
+                            ></noscript
+                          >
+                        </div>
+                        <figcaption>
+                          <span class="clip-number">01</span
+                          ><span>Подсчёт продукции на конвейере</span>
+                        </figcaption>
+                        <div class="video-actions">
+                          <button
+                            class="video-toggle"
+                            data-title="Подсчёт продукции на конвейере"
+                            aria-label="Воспроизвести видео: Подсчёт продукции на конвейере"
+                          >
+                            Воспроизвести
+                          </button>
+                        </div>
+                      </figure>
+                    </div>
+                  </div>
+                  <div class="cv-case-copy">
+                    <div class="cv-case-meta">
+                      <span class="section-index">КЕЙС / 01</span
+                      ><span class="cv-case-status"
+                        >Оцифровано 40+ единиц оборудования</span
+                      >
+                    </div>
+                    <h4 id="cv-case-line-title">
+                      Подсчёт продукции на конвейере
+                    </h4>
+                    <dl class="cv-case-details">
+                      <div class="cv-case-detail">
+                        <dt>ЗАДАЧА</dt>
+                        <dd>
+                          Автоматический непрерывный контроль количества
+                          выпускаемой продукции.
+                        </dd>
+                      </div>
+                      <div class="cv-case-detail">
+                        <dt>КАК УСТРОЕНО</dt>
+                        <dd>
+                          Система отслеживает объекты по ограничивающим рамкам.
+                          При первом попадании нового отслеживаемого объекта в
+                          зону подсчёта (ROI) общий счётчик увеличивается на
+                          один.
+                        </dd>
+                      </div>
+                      <div class="cv-case-detail">
+                        <dt>МОЙ ВКЛАД</dt>
+                        <dd>
+                          Полный цикл разработки: от разметки данных до
+                          интеграции системы и последующей поддержки.
+                        </dd>
+                      </div>
+                      <div class="cv-case-detail">
+                        <dt>РЕЗУЛЬТАТ</dt>
+                        <dd>
+                          Около 95% точности подсчёта по моей сверке результатов
+                          работы системы. Ориентировочная оценка, полученная при
+                          проверке на практике.
+                        </dd>
+                      </div>
+                    </dl>
+                    <div class="card-tags">
+                      <span class="pill">YOLO</span
+                      ><span class="pill">Tracking</span
+                      ><span class="pill">ROI</span
+                      ><span class="pill">Object counting</span>
+                    </div>
+                  </div>
+                </article>
+                <article
+                  id="cv-case-roi"
+                  class="cv-case"
+                  aria-labelledby="cv-case-roi-title"
+                >
+                  <div class="cv-case-media">
+                    <div class="media-gallery">
+                      <figure class="media-clip original-video">
+                        <div class="media-frame" style="aspect-ratio: 1920/960">
+                          <video
+                            data-src="./assets/cv-containers-cropped.mp4"
+                            poster="./assets/cv-containers-cropped-poster.jpg"
+                            loop
+                            muted
+                            playsinline
+                            preload="none"
+                            controls
+                            width="1920"
+                            height="960"
+                            aria-label="Подсчёт контейнеров и определение их состояния"
+                          ></video
+                          ><noscript
+                            ><a
+                              class="video-fallback"
+                              href="./assets/cv-containers-cropped.mp4"
+                              >Открыть видео ↗</a
+                            ></noscript
+                          >
+                        </div>
+                        <figcaption>
+                          <span class="clip-number">02</span
+                          ><span
+                            >Подсчёт контейнеров и определение их
+                            состояния</span
+                          >
+                        </figcaption>
+                        <div class="video-actions">
+                          <button
+                            class="video-toggle"
+                            data-title="Подсчёт контейнеров и определение их состояния"
+                            aria-label="Воспроизвести видео: Подсчёт контейнеров и определение их состояния"
+                          >
+                            Воспроизвести
+                          </button>
+                        </div>
+                      </figure>
+                    </div>
+                  </div>
+                  <div class="cv-case-copy">
+                    <div class="cv-case-meta">
+                      <span class="section-index">КЕЙС / 02</span
+                      ><span class="cv-case-status">Внедрено и работает</span>
+                    </div>
+                    <h4 id="cv-case-roi-title">
+                      Подсчёт контейнеров и определение их состояния
+                    </h4>
+                    <dl class="cv-case-details">
+                      <div class="cv-case-detail">
+                        <dt>ЗАДАЧА</dt>
+                        <dd>
+                          Автоматический непрерывный контроль количества
+                          выезжающих контейнеров и определение их состояния:
+                          открыт или закрыт.
+                        </dd>
+                      </div>
+                      <div class="cv-case-detail">
+                        <dt>КАК УСТРОЕНО</dt>
+                        <dd>
+                          YOLO и ByteTrack обнаруживают и сопровождают
+                          контейнеры. Прохождение зон CHECK и PHOTO определяет
+                          момент получения снимка, по которому ResNet
+                          классифицирует контейнер как открытый или закрытый.
+                        </dd>
+                      </div>
+                      <div class="cv-case-detail">
+                        <dt>МОЙ ВКЛАД</dt>
+                        <dd>
+                          Полный цикл разработки: от разметки данных до
+                          интеграции системы и последующей поддержки.
+                        </dd>
+                      </div>
+                      <div class="cv-case-detail">
+                        <dt>РЕЗУЛЬТАТ</dt>
+                        <dd>
+                          Система внедрена для автоматического подсчёта
+                          контейнеров и классификации их состояния.
+                        </dd>
+                      </div>
+                    </dl>
+                    <div class="card-tags">
+                      <span class="pill">YOLO</span
+                      ><span class="pill">ByteTrack</span
+                      ><span class="pill">ROI</span
+                      ><span class="pill">ResNet</span
+                      ><span class="pill">Classification</span>
+                    </div>
+                  </div>
+                </article>
+                <article
+                  id="cv-case-pose"
+                  class="cv-case"
+                  aria-labelledby="cv-case-pose-title"
+                >
+                  <div class="cv-case-media">
+                    <div class="media-gallery">
+                      <figure class="media-clip original-video">
+                        <div
+                          class="media-frame"
+                          style="aspect-ratio: 1920/1080"
+                        >
+                          <video
+                            data-src="./assets/cv-original-54.mp4"
+                            poster="./assets/cv-original-54-poster.jpg"
+                            loop
+                            muted
+                            playsinline
+                            preload="none"
+                            controls
+                            width="1920"
+                            height="1080"
+                            aria-label="Подсчёт людей и анализ положения в кадре"
+                          ></video
+                          ><noscript
+                            ><a
+                              class="video-fallback"
+                              href="./assets/cv-original-54.mp4"
+                              >Открыть видео ↗</a
+                            ></noscript
+                          >
+                        </div>
+                        <figcaption>
+                          <span class="clip-number">03</span
+                          ><span>Подсчёт людей и анализ положения в кадре</span>
+                        </figcaption>
+                        <div class="video-actions">
+                          <button
+                            class="video-toggle"
+                            data-title="Подсчёт людей и анализ положения в кадре"
+                            aria-label="Воспроизвести видео: Подсчёт людей и анализ положения в кадре"
+                          >
+                            Воспроизвести
+                          </button>
+                        </div>
+                      </figure>
+                    </div>
+                  </div>
+                  <div class="cv-case-copy">
+                    <div class="cv-case-meta">
+                      <span class="section-index">КЕЙС / 03</span
+                      ><span class="cv-case-status"
+                        >Внедрено и работает на 50+ камерах</span
+                      >
+                    </div>
+                    <h4 id="cv-case-pose-title">
+                      Подсчёт людей и анализ положения в кадре
+                    </h4>
+                    <dl class="cv-case-details">
+                      <div class="cv-case-detail">
+                        <dt>ЗАДАЧА</dt>
+                        <dd>
+                          Подсчёт людей в кадре. Для части камер - определение
+                          положения человека: сидит или стоит, а также видимых
+                          частей тела при перекрытии заграждениями.
+                        </dd>
+                      </div>
+                      <div class="cv-case-detail">
+                        <dt>КАК УСТРОЕНО</dt>
+                        <dd>
+                          Детекция людей использовалась для подсчёта в кадре. В
+                          отдельных задачах дополнительно анализировались
+                          положение человека и видимость частей тела.
+                        </dd>
+                      </div>
+                      <div class="cv-case-detail">
+                        <dt>МАСШТАБ</dt>
+                        <dd>
+                          Работал с задачами подсчёта людей более чем на 50
+                          камерах; анализ положения применялся на части из них.
+                        </dd>
+                      </div>
+                    </dl>
+                    <div class="card-tags">
+                      <span class="pill">People counting</span
+                      ><span class="pill">Pose estimation</span
+                      ><span class="pill">Occlusion</span
+                      ><span class="pill">Video analytics</span>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+            <article
+              id="language"
+              class="expertise-card expertise-panel theme-language language-section"
+            >
+              <header class="language-overview">
+                <div class="card-category">
+                  LARGE LANGUAGE MODELS<span>/02</span>
+                </div>
+                <h3>Большие языковые модели</h3>
+                <p>
+                  Развёртываю и интегрирую локальные языковые модели для
+                  обработки и анализа текста, документов и событий. Настраиваю
+                  inference с учётом оборудования и требований задачи.
+                </p>
+              </header>
+              <section
+                class="language-case"
+                aria-labelledby="language-case-title"
+              >
+                <figure class="language-case-image">
+                  <a
+                    href="./assets/llm-event-analytics-narrow.png"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Открыть скриншот: Диалоговая аналитика событий"
+                    ><img
+                      src="./assets/llm-event-analytics-narrow.png"
+                      alt="AI-помощник на Qwen 3.5 9B: выбор источника и периода, вопрос о числе машин за последний час и ответ со статистикой"
+                      width="1806"
+                      height="1458"
+                      loading="lazy"
+                    /><span class="image-expand-hint"
+                      >Открыть в полном размере ↗</span
+                    ></a
+                  >
+                  <figcaption>
+                    Интерфейс диалоговой аналитики: запрос статистики за
+                    последний час
+                  </figcaption>
+                </figure>
+                <div class="language-case-copy">
+                  <div class="language-case-heading">
+                    <span class="section-index">КЕЙС / 01</span
+                    ><span class="language-model">Внедрено и работает</span>
+                  </div>
+                  <h4 id="language-case-title">Диалоговая аналитика событий</h4>
+                  <dl class="cv-case-details language-case-details">
+                    <div class="cv-case-detail">
+                      <dt>ЗАДАЧА</dt>
+                      <dd>
+                        Получать сведения о событиях и статистику за выбранный
+                        период через вопросы на естественном языке.
+                      </dd>
+                    </div>
+                    <div class="cv-case-detail">
+                      <dt>КАК УСТРОЕНО</dt>
+                      <dd>
+                        Веб-платформа получает события из двух источников
+                        видеоаналитики и сохраняет их в формате JSON. В
+                        отдельном окне чата пользователь задаёт вопросы по
+                        каждому источнику: что, где и во сколько происходило.
+                        Количественные показатели рассчитываются кодом, а Qwen
+                        3.5 9B формирует ответы на основе данных.
+                      </dd>
+                    </div>
+                    <div class="cv-case-detail">
+                      <dt>МОЙ ВКЛАД</dt>
+                      <dd>
+                        Полностью разработал веб-платформу с нуля: сохранение
+                        событий, расчёт показателей, интеграцию языковой модели
+                        и интерфейс чата.
+                      </dd>
+                    </div>
+                    <div class="cv-case-detail">
+                      <dt>РЕЗУЛЬТАТ</dt>
+                      <dd>
+                        Вопросы к накопленным событиям и статистике в одном
+                        интерфейсе, с отдельным выбором источника и периода.
+                      </dd>
+                    </div>
+                  </dl>
+                  <div class="language-question">
+                    <span class="mono">ПРИМЕР ВОПРОСА</span>
+                    <p>«Привет, сколько машин проехало за последний час?»</p>
+                  </div>
+                  <div class="card-tags">
+                    <span class="pill">Qwen 3.5 9B</span
+                    ><span class="pill">JSON</span
+                    ><span class="pill">Chat interface</span
+                    ><span class="pill">Event analytics</span>
+                  </div>
+                </div>
+              </section>
+              <section
+                class="language-case"
+                aria-labelledby="language-desktop-case-title"
+              >
+                <figure class="language-case-image">
+                  <a
+                    href="./assets/llm-local-desk.png"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Открыть скриншот: Local Desk - AI-помощник для документов"
+                    ><img
+                      src="./assets/llm-local-desk.png"
+                      alt="Local Desk для macOS: прикреплённый Word-отчёт, запрос на анализ и ответ модели с ключевыми цифрами, проблемой и планом действий"
+                      width="2252"
+                      height="1782"
+                      loading="lazy"
+                    /><span class="image-expand-hint"
+                      >Открыть в полном размере ↗</span
+                    ></a
+                  >
+                  <figcaption>
+                    Анализ демонстрационного Word-отчёта локальной моделью Gemma
+                    · 12B
+                  </figcaption>
+                </figure>
+                <div class="language-case-copy">
+                  <div class="language-case-heading">
+                    <span class="section-index">КЕЙС / 02</span
+                    ><span class="language-model"
+                      >Локальный inference · MLX</span
+                    >
+                  </div>
+                  <h4 id="language-desktop-case-title">
+                    Local Desk - AI-помощник для документов
+                  </h4>
+                  <dl class="cv-case-details language-case-details">
+                    <div class="cv-case-detail">
+                      <dt>ЗАДАЧА</dt>
+                      <dd>
+                        Задавать вопросы по документам и получать краткие выводы
+                        без отправки содержимого файлов во внешние API.
+                      </dd>
+                    </div>
+                    <div class="cv-case-detail">
+                      <dt>КАК УСТРОЕНО</dt>
+                      <dd>
+                        Приложение для macOS извлекает текст из документов и
+                        таблиц, распознаёт текст сканов через OCR и передаёт его
+                        локальной языковой модели через MLX. Для больших файлов
+                        подбирает фрагменты по вопросу пользователя.
+                      </dd>
+                    </div>
+                    <div class="cv-case-detail">
+                      <dt>ВОЗМОЖНОСТИ</dt>
+                      <dd>
+                        Прикрепление файлов, выбор модели, потоковый вывод
+                        ответа, история диалогов, экспорт результатов и
+                        освобождение памяти модели.
+                      </dd>
+                    </div>
+                    <div class="cv-case-detail">
+                      <dt>РЕЗУЛЬТАТ</dt>
+                      <dd>
+                        Работа с файлами в одном интерфейсе чата. На скриншоте -
+                        анализ Word-отчёта: ключевые показатели, основная
+                        проблема и план действий.
+                      </dd>
+                    </div>
+                  </dl>
+                  <div class="language-question">
+                    <span class="mono">ПРИМЕР ВОПРОСА</span>
+                    <p>
+                      «Кратко подведи итоги отчёта: что улучшилось, какая
+                      проблема осталась и что запланировано?»
+                    </p>
+                  </div>
+                  <div class="card-tags">
+                    <span class="pill">Python</span
+                    ><span class="pill">PySide6</span
+                    ><span class="pill">MLX</span><span class="pill">OCR</span
+                    ><span class="pill">Document analysis</span>
+                  </div>
+                  <a
+                    class="project-source-link"
+                    href="https://github.com/Ivangruuu/local-desk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Исходный код на GitHub
+                    <span aria-hidden="true">↗</span></a
+                  >
+                </div>
+              </section>
+            </article>
+            <article
+              id="multimodal"
+              class="expertise-card expertise-panel theme-multimodal vlm-section"
+              aria-labelledby="vlm-title"
+            >
+              <header class="language-overview">
+                <div class="card-category">
+                  VISION LANGUAGE MODELS<span>/03</span>
+                </div>
+                <h3 id="vlm-title">Визуально-языковые модели</h3>
+                <p>
+                  Развёртываю и интегрирую визуально-языковые модели для анализа
+                  изображений по текстовому запросу. Настраиваю промпты,
+                  обработку структурированных ответов и работу моделей на
+                  доступном оборудовании.
+                </p>
+              </header>
+              <div class="vlm-case">
+                <div class="media-gallery">
+                  <figure class="media-clip original-video model-demo">
+                    <div class="model-demo-player">
+                      <div class="media-frame" style="aspect-ratio: 1920/976">
+                        <video
+                          data-src="./assets/vlm-qwen-compatible.mp4"
+                          poster="./assets/vlm-qwen-compatible-poster.jpg"
+                          loop
+                          muted
+                          playsinline
+                          preload="none"
+                          controls
+                          width="1920"
+                          height="976"
+                          aria-label="Определение мойки оборудования по изображениям"
+                        ></video
+                        ><noscript
+                          ><a
+                            class="video-fallback"
+                            href="./assets/vlm-qwen-compatible.mp4"
+                            >Открыть видео ↗</a
+                          ></noscript
+                        >
+                      </div>
+                      <div class="video-actions">
+                        <button
+                          class="video-toggle"
+                          data-title="Определение мойки оборудования по изображениям"
+                          aria-label="Воспроизвести видео: Определение мойки оборудования по изображениям"
+                        >
+                          Воспроизвести
+                        </button>
+                      </div>
+                    </div>
+                    <figcaption class="model-demo-copy">
+                      <span class="section-index">КЕЙС / 01</span>
+                      <h4>Определение мойки оборудования по изображениям</h4>
+                      <p class="vlm-case-status">Внедрено и работает</p>
+                      <dl class="cv-case-details vlm-case-details">
+                        <div class="cv-case-detail">
+                          <dt>ЗАДАЧА</dt>
+                          <dd>
+                            Автоматически определять по кадрам производственного
+                            участка, происходит ли мойка оборудования.
+                          </dd>
+                        </div>
+                        <div class="cv-case-detail">
+                          <dt>КАК УСТРОЕНО</dt>
+                          <dd>
+                            Локальная Qwen3-VL анализирует изображения по
+                            текстовому запросу и возвращает JSON с наблюдаемыми
+                            признаками: вода, пена, сотрудник и шланг - и
+                            выводом о процессе мойки.
+                          </dd>
+                        </div>
+                        <div class="cv-case-detail">
+                          <dt>МОЙ ВКЛАД</dt>
+                          <dd>
+                            Полный цикл разработки: развёртывание модели на
+                            NVIDIA L40, подготовка промпта, обработка ответа и
+                            интеграция в систему.
+                          </dd>
+                        </div>
+                        <div class="cv-case-detail">
+                          <dt>РЕЗУЛЬТАТ</dt>
+                          <dd>
+                            Система автоматически фиксирует признаки мойки
+                            оборудования и передаёт результат в производственный
+                            мониторинг.
+                          </dd>
+                        </div>
+                      </dl>
+                      <div class="card-tags">
+                        <span class="pill">Qwen3-VL</span
+                        ><span class="pill">NVIDIA L40</span
+                        ><span class="pill">Image + Text</span
+                        ><span class="pill">JSON</span>
+                      </div>
+                    </figcaption>
+                  </figure>
+                </div>
+              </div>
+            </article>
+            <article
+              id="ocr"
+              class="expertise-card expertise-panel theme-ocr language-section"
+              aria-labelledby="ocr-title"
+            >
+              <header class="language-overview">
+                <div class="card-category">
+                  OPTICAL CHARACTER RECOGNITION<span>/04</span>
+                </div>
+                <h3 id="ocr-title">Распознавание текста</h3>
+                <p>
+                  Распознаю текст и числовые значения на изображениях и кадрах с
+                  камер. Использую YOLO для поиска области распознавания,
+                  EasyOCR и Tesseract / pytesseract - для извлечения текста.
+                </p>
+              </header>
+              <section
+                id="ocr-case-plates"
+                class="language-case"
+                aria-labelledby="ocr-case-plates-title"
+              >
+                <figure class="language-case-image">
+                  <a
+                    href="./assets/ocr-license-plate.png"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Открыть иллюстрацию: Контроль въезда и выезда автомобилей"
+                    ><img
+                      src="./assets/ocr-license-plate.png"
+                      alt="Иллюстрация распознавания автомобильного номера: автомобиль, выделенная область номера и распознанные символы"
+                      width="1672"
+                      height="941"
+                      loading="lazy"
+                    /><span class="image-expand-hint"
+                      >Открыть в полном размере ↗</span
+                    ></a
+                  >
+                  <figcaption>
+                    Иллюстрация этапов: поиск области номера и распознавание
+                    символов.
+                  </figcaption>
+                </figure>
+                <div class="language-case-copy">
+                  <div class="language-case-heading">
+                    <span class="section-index">КЕЙС / 01</span
+                    ><span class="language-model">Внедрено и работает</span>
+                  </div>
+                  <h4 id="ocr-case-plates-title">
+                    Контроль въезда и выезда автомобилей
+                  </h4>
+                  <dl class="cv-case-details language-case-details">
+                    <div class="cv-case-detail">
+                      <dt>ЗАДАЧА</dt>
+                      <dd>
+                        Автоматически контролировать въезд и выезд автомобилей
+                        по государственным регистрационным номерам.
+                      </dd>
+                    </div>
+                    <div class="cv-case-detail">
+                      <dt>КАК УСТРОЕНО</dt>
+                      <dd>
+                        YOLO обнаруживает область автомобильного номера на
+                        изображении. EasyOCR распознаёт символы в выделенной
+                        области.
+                      </dd>
+                    </div>
+                    <div class="cv-case-detail">
+                      <dt>РЕЗУЛЬТАТ</dt>
+                      <dd>
+                        В базе данных сохраняются распознанный номер автомобиля,
+                        событие въезда или выезда и его время.
+                      </dd>
+                    </div>
+                  </dl>
+                  <div class="card-tags">
+                    <span class="pill">Python</span
+                    ><span class="pill">YOLO</span
+                    ><span class="pill">EasyOCR</span
+                    ><span class="pill">База данных</span>
+                  </div>
+                </div>
+              </section>
+            </article>
+            <article
+              id="nlp"
+              class="expertise-card expertise-panel theme-nlp language-section"
+              aria-labelledby="nlp-title"
+            >
+              <header class="language-overview">
+                <div class="card-category">
+                  NATURAL LANGUAGE PROCESSING<span>/05</span>
+                </div>
+                <h3 id="nlp-title">Обработка естественного языка</h3>
+                <p>
+                  В рамках учебных работ применял методы NLP: от предобработки
+                  текстов и частотного анализа до классификации, извлечения
+                  сущностей и семантического поиска.
+                </p>
+              </header>
+              <section class="language-case" aria-labelledby="nlp-case-title">
+                <figure class="language-case-image">
+                  <a
+                    href="./assets/nlp-wordcloud.png?v=541e8ed0c7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Открыть облако слов в полном размере"
+                    ><img
+                      src="./assets/nlp-wordcloud.png?v=541e8ed0c7"
+                      alt="Облако слов по русскоязычной научной статье: нейронный, сеть, обучение, распознавание, изображение"
+                      width="1600"
+                      height="1000"
+                      loading="lazy"
+                    /><span class="image-expand-hint"
+                      >Открыть в полном размере ↗</span
+                    ></a
+                  >
+                  <figcaption>
+                    Пример частотного анализа: облако слов по статье «Обзор
+                    применения нейронных сетей» (Свито И.Л., Свито А.И., 2019).
+                  </figcaption>
+                  <p class="nlp-demo-note">
+                    Для этого примера извлечён текст научной статьи, удалены
+                    служебные слова и выполнена лемматизация. Размер слова в
+                    облаке отражает его частоту в тексте.
+                  </p>
+                </figure>
+                <div class="language-case-copy">
+                  <div class="language-case-heading">
+                    <span class="section-index">КЕЙС / 01</span
+                    ><span class="language-model">Учебный проект</span>
+                  </div>
+                  <h4 id="nlp-case-title">Анализ текстов</h4>
+                  <dl class="cv-case-details language-case-details">
+                    <div class="cv-case-detail">
+                      <dt>ЗАДАЧА</dt>
+                      <dd>
+                        Изучить и применить методы обработки естественного языка
+                        для анализа содержания, эмоциональной окраски и
+                        смысловой близости текстов.
+                      </dd>
+                    </div>
+                    <div class="cv-case-detail">
+                      <dt>ЧТО ДЕЛАЛ</dt>
+                      <dd>
+                        В рамках учебных работ подготавливал тексты к анализу и
+                        строил облака слов. Решал задачи классификации,
+                        определения тональности и эмоций, извлечения именованных
+                        сущностей, семантического поиска и кластеризации.
+                      </dd>
+                    </div>
+                    <div class="cv-case-detail">
+                      <dt>РЕЗУЛЬТАТ</dt>
+                      <dd>
+                        Получил визуализации частотной лексики, результаты
+                        классификации и анализа эмоциональной окраски,
+                        выделенные сущности и группы близких по смыслу текстов.
+                        Исследовал поиск релевантных фрагментов по смыслу
+                        запроса.
+                      </dd>
+                    </div>
+                  </dl>
+                  <div class="card-tags">
+                    <span class="pill">Python</span
+                    ><span class="pill">Предобработка текста</span
+                    ><span class="pill">Классификация</span
+                    ><span class="pill">NER</span
+                    ><span class="pill">Семантический поиск</span
+                    ><span class="pill">Кластеризация</span>
+                  </div>
+                </div>
+              </section>
+            </article>
+          </div>
+        </section>
+        <section id="stack" class="section wrap compact-stack">
+          <div class="section-top">
+            <span class="section-index">04 / СТЕК</span
+            ><span class="mono">MY EVERYDAY TOOLKIT</span>
+          </div>
+          <div class="stack-layout">
+            <div class="stack-intro reveal">
+              <h2>Рабочий <em>стек.</em></h2>
+              <p>Основные инструменты по направлениям.</p>
+            </div>
+            <div class="stack-list reveal">
+              <div class="stack-row">
+                <span class="stack-label">CORE</span>
+                <div class="stack-items">
+                  <span class="pill">Python</span
+                  ><span class="pill">PyTorch</span
+                  ><span class="pill">NumPy</span
+                  ><span class="pill">pandas</span
+                  ><span class="pill">scikit-learn</span
+                  ><span class="pill">SQL</span>
+                </div>
+              </div>
+              <div class="stack-row">
+                <span class="stack-label">CV</span>
+                <div class="stack-items">
+                  <span class="pill">OpenCV</span
+                  ><span class="pill">YOLO / YOLO Pose</span
+                  ><span class="pill">ResNet</span
+                  ><span class="pill">EfficientNet</span
+                  ><span class="pill">ByteTrack</span
+                  ><span class="pill">CVAT</span>
+                </div>
+              </div>
+              <div class="stack-row">
+                <span class="stack-label">LLM</span>
+                <div class="stack-items">
+                  <span class="pill">Qwen</span><span class="pill">Llama</span
+                  ><span class="pill">DeepSeek</span>
+                </div>
+              </div>
+              <div class="stack-row">
+                <span class="stack-label">VLM</span>
+                <div class="stack-items">
+                  <span class="pill">Qwen3-VL</span
+                  ><span class="pill">Llama 3.2 Vision</span
+                  ><span class="pill">Gemma 3</span>
+                </div>
+              </div>
+              <div class="stack-row">
+                <span class="stack-label">OCR</span>
+                <div class="stack-items">
+                  <span class="pill">OpenCV</span
+                  ><span class="pill">EasyOCR</span
+                  ><span class="pill">Tesseract / pytesseract</span>
+                </div>
+              </div>
+              <div class="stack-row">
+                <span class="stack-label">NLP</span>
+                <div class="stack-items">
+                  <span class="pill">Hugging Face Transformers</span
+                  ><span class="pill">spaCy</span
+                  ><span class="pill">Natasha</span
+                  ><span class="pill">BERT / RuBERT</span>
+                </div>
+              </div>
+              <div class="stack-row">
+                <span class="stack-label">RUNTIME</span>
+                <div class="stack-items">
+                  <span class="pill">Ollama</span><span class="pill">MLX</span
+                  ><span class="pill">Apple Silicon</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="education" class="section wrap">
+          <div class="section-top">
+            <span class="section-index">05 / ОБРАЗОВАНИЕ</span
+            ><span class="mono">ALWAYS LEARNING</span>
+          </div>
+          <h2 class="reveal">Основа. <em>И развитие.</em></h2>
+          <div class="education-grid">
+            <article class="education-main reveal">
+              <span class="section-index">БАКАЛАВРИАТ · ВЫПУСК 2027</span>
+              <h3>МИРЭА - Российский<br />технологический университет</h3>
+              <p>Искусственный интеллект и машинное обучение</p>
+              <div class="education-meta">
+                <span
+                  >Институт кибербезопасности<br />и цифровых технологий</span
+                ><span>Москва</span>
+              </div>
+            </article>
+            <div class="reveal">
+              <article class="course">
+                <span class="section-index">SAMSUNG · 2024</span>
+                <h3>Искусственный интеллект и машинное зрение</h3>
+                <p>Повышение квалификации</p>
+              </article>
+              <article class="course">
+                <span class="section-index">ИННОПОЛИС · 2024</span>
+                <h3>Цифровая кафедра: технологии DevOps</h3>
+                <p>Повышение квалификации</p>
+              </article>
+              <div class="language-row">
+                <span>Русский · родной</span><span>Английский · B1</span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="contact" class="contact-section wrap">
+          <div class="contact-top">
+            <span class="section-index">06 / КОНТАКТЫ</span
+            ><span class="eyebrow"
+              ><span class="status-dot"></span> ОТКРЫТ К ПРЕДЛОЖЕНИЯМ</span
+            >
+          </div>
+          <h2 class="reveal">
+            Давайте создадим<br /><span>что-то работающее.</span>
+          </h2>
+          <div class="contact-bottom reveal">
+            <div>
+              <p>
+                Рассматриваю позиции ML Engineer.<br />Полная занятость или
+                стажировка,<br />удалённый или гибридный формат.
+              </p>
+              <p>Не готов к переезду, готов к редким командировкам.</p>
+              <a class="contact-email" href="mailto:ivan.gru.05@mail.ru"
+                >ivan.gru.05@mail.ru</a
+              ><button class="copy-button" aria-label="Скопировать email">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="8" y="8" width="12" height="12" rx="2" />
+                  <path d="M16 8V4H4V16H8" />
+                </svg>
+              </button>
+              <nav class="contact-socials" aria-label="Способы связи">
+                <a
+                  href="https://t.me/Ivangruu1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><span>TELEGRAM</span><strong>@Ivangruu1</strong
+                  ><i aria-hidden="true">↗</i></a
+                ><a
+                  href="https://vk.ru/ivangruu1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><span>VK</span><strong>ivangruu1</strong
+                  ><i aria-hidden="true">↗</i></a
+                ><a href="tel:+79051484891"
+                  ><span>ТЕЛЕФОН</span><strong>+7 (905) 148-48-91</strong
+                  ><i aria-hidden="true">↗</i></a
+                >
+              </nav>
+            </div>
+          </div>
+        </section>
       </div>
-    </section>
-    <div id="sections"></div>
-  </main>
-  <footer class="wrap footer"><a class="brand-mark" href="#" aria-label="В начало">ig<span>_</span></a><p>Иван Груздев <span>© 2026</span></p><span class="mono">BUILT WITH CURIOSITY.</span><a href="#">Наверх</a></footer>
-  <dialog id="detail-dialog"><button class="dialog-close" aria-label="Закрыть подробности">×</button><div id="dialog-content"></div></dialog>
-  <dialog id="video-dialog" class="video-screen" aria-labelledby="video-screen-title"><div class="video-screen-header"><span id="video-screen-title"></span><button class="video-screen-close" aria-label="Закрыть полноэкранное видео">×</button></div><div class="video-screen-stage"></div></dialog>
-  <div class="toast" role="status" aria-live="polite"></div>
-</body>
+    </main>
+    <footer class="wrap footer">
+      <a class="brand-mark" href="#" aria-label="В начало">ig<span>_</span></a>
+      <p>Иван Груздев <span>© 2026</span></p>
+      <span class="mono">BUILT WITH CURIOSITY.</span><a href="#">Наверх</a>
+    </footer>
+    <dialog
+      id="video-dialog"
+      class="video-screen"
+      aria-labelledby="video-screen-title"
+    >
+      <div class="video-screen-header">
+        <span id="video-screen-title"></span
+        ><button
+          class="video-screen-close"
+          aria-label="Закрыть полноэкранное видео"
+        >
+          ×
+        </button>
+      </div>
+      <div class="video-screen-stage"></div>
+    </dialog>
+    <div
+      class="toast"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+  </body>
 </html>

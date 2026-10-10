@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#10120f" />
+    <meta
+      name="description"
+      content="Иван Груздев - ML Engineer. Computer Vision, LLM, VLM, OCR и NLP. От данных до production."
+    />
+    <link rel="canonical" href="https://ivangruuu.github.io/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:title" content="Иван Груздев - ML Engineer" />
+    <meta
+      property="og:description"
+      content="Computer Vision, LLM, VLM, OCR и NLP. Кейсы, опыт и контакты."
+    />
+    <meta property="og:url" content="https://ivangruuu.github.io/" />
+    <meta
+      property="og:image"
+      content="https://ivangruuu.github.io/assets/social-preview.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Иван Груздев - ML Engineer. CV · LLM · VLM · OCR · NLP"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Иван Груздев - ML Engineer</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23c4f568'/%3E%3Cpath d='M18 17h7v30h-7zm14 0h7v12l8-12h8L44 32l12 15h-9l-8-12v12h-7z' fill='%2310120f'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="./styles.css?v={{styleHash}}" />
+    <script src="./app.js?v={{appHash}}" defer></script>
+    <script src="./animation.js?v={{animationHash}}" defer></script>
+  </head>
+  <body>
+    <div class="neural-background" aria-hidden="true">
+      <canvas id="neural"></canvas>
+    </div>
+    <a class="skip-link" href="#main">Перейти к содержимому</a>
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <header class="header wrap">
+      <a href="#" class="brand" aria-label="Иван Груздев, начало"
+        ><span class="brand-mark">ig<span>_</span></span
+        ><span class="brand-name"
+          >ИВАН ГРУЗДЕВ<br /><small>ML ENGINEER</small></span
+        ></a
+      >
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#about">Обо мне</a><a href="#experience">Опыт</a
+        ><a href="#work">Кейсы</a><a href="#stack">Стек</a
+        ><a href="#education">Образование</a>
+      </nav>
+      <a class="contact-link" href="#contact"
+        >Связаться <span class="small-star" aria-hidden="true">✳</span></a
+      >
+      <button
+        class="menu-toggle"
+        aria-label="Открыть меню"
+        aria-expanded="false"
+      >
+        <span></span><span></span>
+      </button>
+    </header>
+    <main id="main">
+      <section class="hero wrap" aria-labelledby="hero-title">
+        <div class="hero-top">
+          <span class="eyebrow"
+            ><span class="status-dot"></span> ОТКРЫТ К ПРЕДЛОЖЕНИЯМ</span
+          ><span class="mono location">МОСКВА · УДАЛЁННО / ГИБРИД</span>
+        </div>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="hero-name">Иван Груздев</p>
+            <h1 id="hero-title">
+              ML <span>Engineer<span class="title-period">.</span></span>
+            </h1>
+            <p class="hero-experience">Коммерческий опыт с августа 2024</p>
+            <p class="hero-description">
+              Разрабатываю и внедряю ML-системы для промышленности и ритейла:
+              видеоаналитику, распознавание текста и решения на базе локальных
+              языковых и мультимодальных моделей. Работаю от подготовки данных и
+              обучения моделей до интеграции и поддержки.
+            </p>
+            <nav class="hero-directions" aria-label="Направления работы">
+              <a href="#vision" aria-label="CV - Компьютерное зрение"
+                >CV <span aria-hidden="true">↗</span></a
+              >
+              <a href="#language" aria-label="LLM - Большие языковые модели"
+                >LLM <span aria-hidden="true">↗</span></a
+              >
+              <a href="#multimodal" aria-label="VLM - Визуально-языковые модели"
+                >VLM <span aria-hidden="true">↗</span></a
+              >
+              <a href="#ocr" aria-label="OCR - Распознавание текста"
+                >OCR <span aria-hidden="true">↗</span></a
+              >
+              <a href="#nlp" aria-label="NLP - Обработка естественного языка"
+                >NLP <span aria-hidden="true">↗</span></a
+              >
+            </nav>
+            <div class="hero-actions">
+              <a
+                class="button primary"
+                href="./assets/ivan-gruzdev-resume.pdf?v=24d821c571"
+                download="Иван-Груздев-ML-Engineer.pdf"
+                >Резюме PDF
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 3v12m-4-4 4 4 4-4M5 16v4h14v-4" /></svg
+              ></a>
+              <a class="button secondary" href="#work"
+                >Кейсы <span aria-hidden="true">↗</span></a
+              >
+              <a
+                class="hero-telegram"
+                href="https://t.me/Ivangruu1"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Telegram <span aria-hidden="true">↗</span></a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <div id="sections">{{sections}}</div>
+    </main>
+    <footer class="wrap footer">
+      <a class="brand-mark" href="#" aria-label="В начало">ig<span>_</span></a>
+      <p>Иван Груздев <span>© 2026</span></p>
+      <span class="mono">BUILT WITH CURIOSITY.</span><a href="#">Наверх</a>
+    </footer>
+    <dialog
+      id="video-dialog"
+      class="video-screen"
+      aria-labelledby="video-screen-title"
+    >
+      <div class="video-screen-header">
+        <span id="video-screen-title"></span
+        ><button
+          class="video-screen-close"
+          aria-label="Закрыть полноэкранное видео"
+        >
+          ×
+        </button>
+      </div>
+      <div class="video-screen-stage"></div>
+    </dialog>
+    <div
+      class="toast"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+  </body>
+</html>

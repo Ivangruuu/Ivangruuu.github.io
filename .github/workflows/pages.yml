@@ -22,10 +22,28 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v6
-      - name: Check JavaScript
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build and check static page
         run: |
-          node --check dist/app.js
-          node --check dist/content.js
+          pnpm build
+          pnpm check
+      - name: Install test browser
+        run: pnpm exec playwright install --with-deps webkit chromium
+      - name: Check browser behavior
+        run: pnpm test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: browser-test-results
+          path: test-results
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
