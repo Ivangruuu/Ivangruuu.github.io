@@ -1,8 +1,8 @@
 :root {
   --bg: #10120f;
   --surface: #181b16;
-  --ink: #f0f2eb;
-  --muted: #999f92;
+  --ink: #f2f2ec;
+  --muted: #b8bdb2;
   --accent: #c4f568;
   --line: #30352b;
   --mono: "IBM Plex Mono", monospace;
@@ -157,7 +157,7 @@ h1 > span {
   font-size: 17px;
   line-height: 1.7;
   margin: 27px 0;
-  color: #adb4a4;
+  color: var(--ink);
 }
 .hero-actions {
   display: flex;
@@ -224,7 +224,7 @@ h1 > span {
   letter-spacing: 0.06em;
 }
 .section-top .mono {
-  color: #707865;
+  color: var(--muted);
   font-size: 11px;
 }
 h2 {
@@ -236,7 +236,7 @@ h2 {
 }
 h2 em {
   font-style: normal;
-  color: var(--muted);
+  color: var(--ink);
 }
 h3 {
   font-weight: 600;
@@ -252,7 +252,7 @@ h3 {
 .about-copy p {
   font-size: 18px;
   line-height: 1.8;
-  color: #b0b7a6;
+  color: var(--ink);
   margin: 0 0 20px;
 }
 .about-copy p strong {
@@ -270,7 +270,7 @@ h3 {
   padding: 6px 11px;
   border: 1px solid var(--line);
   border-radius: 4px;
-  color: #b4bda8;
+  color: var(--muted);
 }
 .fact-strip {
   display: grid;
@@ -335,7 +335,7 @@ h3 {
   letter-spacing: 0.05em;
 }
 .card-category span {
-  color: #6c775f;
+  color: var(--muted);
 }
 .card-tags {
   display: flex;
@@ -364,7 +364,8 @@ h3 {
 }
 .job-date {
   color: var(--accent);
-  font: 12px var(--mono);
+  font: 500 16px/1.6 var(--mono);
+  text-wrap: balance;
 }
 .job-header {
   display: flex;
@@ -379,7 +380,7 @@ h3 {
 }
 .job-role {
   font-size: 16px;
-  color: #b8c2ab;
+  color: var(--muted);
   margin: 6px 0 22px;
 }
 .job-points {
@@ -391,7 +392,7 @@ h3 {
   padding: 14px 0 14px 23px;
   border-top: 1px solid var(--line);
   font-size: 14px;
-  color: #b7bfab;
+  color: var(--ink);
   position: relative;
 }
 .job-points li:before {
@@ -438,7 +439,7 @@ h3 {
 .stack-items .pill {
   font-size: 13px;
   padding: 7px 12px;
-  color: #d2d9c9;
+  color: var(--ink);
   background: #ffffff02;
 }
 .education-grid {
@@ -459,7 +460,7 @@ h3 {
 }
 .education-main p {
   font-size: 15px;
-  color: #a3ae97;
+  color: var(--ink);
   margin: 0;
   max-width: 440px;
 }
@@ -468,7 +469,7 @@ h3 {
   justify-content: space-between;
   margin-top: 27px;
   font: 11px var(--mono);
-  color: #7f8d70;
+  color: var(--muted);
 }
 .course {
   padding: 21px 0;
@@ -517,7 +518,7 @@ h3 {
   align-items: end;
 }
 .contact-bottom p {
-  color: var(--muted);
+  color: var(--ink);
   font-size: 15px;
   max-width: 380px;
   margin: 0 0 27px;
@@ -535,7 +536,7 @@ h3 {
 .copy-button {
   border: 1px solid var(--line);
   background: none;
-  color: #9caa8d;
+  color: var(--muted);
   border-radius: 5px;
   width: 35px;
   height: 35px;
@@ -570,7 +571,7 @@ h3 {
 }
 .footer > .mono {
   font-size: 10px;
-  color: #66715b;
+  color: var(--muted);
 }
 .footer > a:last-child {
   font-size: 12px;
@@ -618,7 +619,7 @@ dialog::backdrop {
 }
 dialog p,
 dialog li {
-  color: #b6c0a9;
+  color: var(--ink);
   font-size: 16px;
   line-height: 1.8;
 }
@@ -951,7 +952,7 @@ dialog .card-tags {
   font-size: 12px;
   padding: 5px 9px;
   border-color: color-mix(in srgb, var(--panel-accent) 20%, transparent);
-  color: var(--panel-accent);
+  color: var(--accent);
 }
 .expertise-panel.theme-language {
   grid-template-columns: 1.15fr 0.85fr;
@@ -1066,7 +1067,7 @@ dialog .card-tags {
   margin-top: 9px;
   font-size: 12px;
   line-height: 1.5;
-  color: #b4c2a5;
+  color: var(--muted);
 }
 .clip-number {
   font: 11px var(--mono);
@@ -1103,7 +1104,7 @@ dialog .card-tags {
   margin: 0;
 }
 .model-demo-copy .section-index {
-  color: var(--panel-accent);
+  color: var(--accent);
 }
 .model-demo-copy h4 {
   font-size: clamp(22px, 2vw, 29px);
@@ -1114,12 +1115,12 @@ dialog .card-tags {
 }
 .model-demo-copy .card-tags .pill {
   font-size: 12px;
-  color: var(--panel-accent);
+  color: var(--accent);
   border-color: color-mix(in srgb, var(--panel-accent) 35%, transparent);
 }
 .expertise-panel:has(.model-demo) .clip-number,
 .expertise-panel:has(.model-demo) .video-toggle {
-  color: var(--panel-accent);
+  color: var(--accent);
 }
 .expertise-panel:has(.model-demo) .video-toggle {
   border-color: color-mix(in srgb, var(--panel-accent) 35%, transparent);
@@ -1184,7 +1185,7 @@ dialog .card-tags {
   border: 1px solid #ffffff50;
   border-radius: 7px;
   background: #10120fcc;
-  color: #fff;
+  color: var(--ink);
   opacity: 0;
   transform: translateY(4px);
   pointer-events: none;
@@ -1252,7 +1253,7 @@ dialog .card-tags {
   border: 1px solid #ffffff30;
   border-radius: 6px;
   background: #ffffff08;
-  color: #fff;
+  color: var(--ink);
   font-size: 28px;
   line-height: 1;
 }
@@ -1364,14 +1365,14 @@ dialog .card-tags {
 .cv-description {
   font-size: 17px;
   line-height: 1.8;
-  color: var(--muted);
+  color: var(--ink);
   margin: 0;
   max-width: 520px;
 }
 .cv-overview .card-tags .pill,
 .cv-case .card-tags .pill {
   font-size: 12px;
-  color: #c7d7b4;
+  color: var(--accent);
   border-color: #3f5130;
   padding: 5px 9px;
 }
@@ -1583,7 +1584,7 @@ body {
   letter-spacing: 0.05em;
 }
 .stack-list .stack-items .pill {
-  color: #f1f5eb;
+  color: var(--ink);
   background: #252e1f;
   border-color: #62734e;
   font-weight: 500;
@@ -1641,11 +1642,19 @@ body {
   margin: 14px 0 28px;
   font-size: 18px;
   line-height: 1.75;
-  color: #c3cabb;
+  color: var(--ink);
 }
 .hero-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: center;
   gap: 12px;
+  max-width: 560px;
+}
+.hero-actions .button {
+  min-width: 0;
+  padding-inline: 12px;
+  white-space: nowrap;
 }
 @media (max-width: 760px) {
   .hero-grid {
@@ -1664,8 +1673,6 @@ body {
     margin-bottom: 24px;
   }
   .hero-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 10px;
   }
   .hero-actions .button {
@@ -1673,9 +1680,15 @@ body {
     font-size: 12px;
     gap: 8px;
   }
-  .hero-contact {
-    grid-column: 1/-1;
-    justify-self: start;
+}
+@media (max-width: 480px) {
+  .hero-actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .hero-actions .button {
+    height: 52px;
+    font-size: 14px;
+    gap: 12px;
   }
 }
 
@@ -1701,9 +1714,6 @@ body {
   transition:
     background 0.2s,
     border-color 0.2s;
-}
-.hero-directions a span {
-  opacity: 0.65;
 }
 .hero-directions a:hover {
   border-color: var(--accent);
@@ -1738,7 +1748,7 @@ body {
 }
 .experience-context {
   max-width: 300px;
-  color: var(--muted);
+  color: var(--ink);
   font-size: 14px;
   line-height: 1.8;
   margin: 18px 0 0;
@@ -1840,8 +1850,7 @@ body {
     font-size: 24px;
   }
   .experience-summary .job-date {
-    font-size: 10px;
-    line-height: 1.7;
+    font-size: 14px;
   }
   .compact-stack .stack-list {
     padding: 0 16px;
@@ -1891,7 +1900,7 @@ body {
   margin: 0;
   font-size: 14px;
   line-height: 1.8;
-  color: #c4cdbb;
+  color: var(--ink);
 }
 @media (max-width: 760px) {
   .cv-case-media {
@@ -1929,7 +1938,7 @@ body {
   margin: 0;
   font-size: 16px;
   line-height: 1.8;
-  color: var(--muted);
+  color: var(--ink);
 }
 .language-case-heading {
   display: flex;
@@ -1940,11 +1949,11 @@ body {
 .language-section .section-index,
 .language-section .cv-case-detail dt,
 .language-question .mono {
-  color: var(--panel-accent);
+  color: var(--accent);
 }
 .language-model {
   font: 12px var(--mono);
-  color: var(--panel-accent);
+  color: var(--accent);
   border: 1px solid #345360;
   border-radius: 5px;
   padding: 6px 10px;
@@ -1975,7 +1984,7 @@ body {
   min-height: 44px;
   margin-top: 16px;
   font-size: 14px;
-  color: var(--panel-accent);
+  color: var(--accent);
 }
 .project-source-link:hover {
   text-decoration: underline;
@@ -2000,7 +2009,7 @@ body {
   line-height: 1.6;
 }
 .language-section .card-tags .pill {
-  color: var(--panel-accent);
+  color: var(--accent);
   border-color: #345360;
 }
 @media (max-width: 760px) {
@@ -2049,7 +2058,7 @@ body {
   border: 1px solid #ffffff30;
   border-radius: 5px;
   background: #101a21e8;
-  color: #e9f6fb;
+  color: var(--muted);
   font-size: 11px;
   opacity: 0;
   transition: opacity 0.2s;
@@ -2079,7 +2088,7 @@ body {
 }
 .theme-multimodal .cv-case-detail dt,
 .vlm-case-status {
-  color: var(--panel-accent);
+  color: var(--accent);
 }
 .vlm-case-status {
   font: 11px var(--mono);
@@ -2141,7 +2150,7 @@ body {
 .video-fallback {
   display: block;
   padding: 12px;
-  color: var(--panel-accent);
+  color: var(--accent);
 }
 @media (max-width: 760px) {
   .nav {

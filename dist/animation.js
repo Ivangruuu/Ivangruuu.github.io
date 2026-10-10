@@ -1,4 +1,4 @@
-// A quiet neural field: scroll changes perspective, section changes its palette.
+// A slowly rotating neural sphere with sparse signals along its connections.
 // This file is optional and never controls the page content or navigation.
 (() => {
   try {
@@ -56,6 +56,20 @@
           links.push([i, j]);
       }),
     );
+    const neighbors = nodes.map(() => []);
+    links.forEach(([a, b]) => {
+      neighbors[a].push(b);
+      neighbors[b].push(a);
+    });
+    const hubs = Array.from({ length: coarse.matches ? 4 : 7 }, (_, index) =>
+      Math.floor(((index + 0.4) * nodeCount) / (coarse.matches ? 4 : 7)),
+    );
+    const signals = Array.from({ length: coarse.matches ? 1 : 2 }, () => ({
+      route: [],
+      started: -Infinity,
+    }));
+    let nextSignalAt = 0.6,
+      signalNumber = 0;
     const projected = nodes.map(() => ({ x: 0, y: 0, z: 0 }));
     const linkBuckets = Array.from({ length: 12 }, () => []);
     const nodeBuckets = Array.from({ length: 8 }, () => []);
@@ -129,6 +143,94 @@
       ctx.globalAlpha = Math.min(1, opacity * mix(1, 1.45, caseExpansion));
       ctx.drawImage(glowSprite, x - radius, y - radius, radius * 2, radius * 2);
       ctx.globalAlpha = 1;
+    }
+    function drawSignals() {
+      if (motion.matches) return;
+      const hopDuration = 0.85;
+      if (phase >= nextSignalAt) {
+        const signal = signals[signalNumber % signals.length];
+        signal.route.length = 0;
+        // Start on the visible front surface, so a rare signal is easy to see.
+        for (let offset = 0; offset < nodeCount; offset++) {
+          const index = (signalNumber * 53 + offset * 37) % nodeCount;
+          const point = projected[index];
+          if (
+            point.z > 0.15 &&
+            point.x > width * 0.06 &&
+            point.x < width * 0.94 &&
+            point.y > height * 0.06 &&
+            point.y < height * 0.94
+          ) {
+            signal.route.push(index);
+            break;
+          }
+        }
+        // Follow real neighboring edges; never jump between unrelated links.
+        for (let hop = 0; hop < 3 && signal.route.length; hop++) {
+          const adjacent = neighbors[signal.route.at(-1)];
+          let next;
+          for (let offset = 0; offset < adjacent.length; offset++) {
+            const index =
+              adjacent[(offset + signalNumber + hop) % adjacent.length];
+            const point = projected[index];
+            if (
+              !signal.route.includes(index) &&
+              point.z > -0.15 &&
+              point.x > 0 &&
+              point.x < width &&
+              point.y > 0 &&
+              point.y < height
+            ) {
+              next = index;
+              break;
+            }
+          }
+          if (next === undefined) break;
+          signal.route.push(next);
+        }
+        signal.started = phase;
+        signalNumber++;
+        nextSignalAt = phase + (coarse.matches ? 4.8 : 3.7);
+      }
+      for (const signal of signals) {
+        const elapsed = phase - signal.started;
+        const hops = signal.route.length - 1;
+        const arrival = elapsed - hops * hopDuration;
+        if (hops < 1 || elapsed < 0 || arrival > 0.75) continue;
+        if (arrival < 0) {
+          const step = Math.floor(elapsed / hopDuration);
+          const t = (elapsed / hopDuration) % 1;
+          const a = projected[signal.route[step]],
+            b = projected[signal.route[step + 1]];
+          const fade = Math.min(1, elapsed / 0.25);
+          const x = mix(a.x, b.x, t),
+            y = mix(a.y, b.y, t);
+          // A short soft trail, using the cached glow sprite rather than blur.
+          ctx.lineWidth = 1.4;
+          ctx.strokeStyle = color(fade * 0.65);
+          ctx.beginPath();
+          ctx.moveTo(
+            mix(a.x, b.x, Math.max(0, t - 0.25)),
+            mix(a.y, b.y, Math.max(0, t - 0.25)),
+          );
+          ctx.lineTo(x, y);
+          ctx.stroke();
+          glow(x, y, 16, fade * 0.48);
+          ctx.fillStyle = color(fade);
+          ctx.beginPath();
+          ctx.arc(x, y, 2.5, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          const end = projected[signal.route.at(-1)];
+          const fade = 1 - smoothstep(0, 0.75, arrival);
+          glow(end.x, end.y, 18, fade * 0.5);
+          ctx.strokeStyle = color(fade * 0.6);
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.arc(end.x, end.y, 3 + arrival * 8, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+      }
     }
     function draw(energy) {
       ctx.clearRect(0, 0, width, height);
@@ -205,26 +307,7 @@
         });
         ctx.stroke();
       });
-      // A few traveling signals make the connections feel alive, without flashes.
-      if (!motion.matches) {
-        const count = coarse.matches ? 4 : 9;
-        for (let i = 0; i < count; i++) {
-          const packetPhase = phase / 2.8 + i * 0.173;
-          const edge =
-            links[(i * 43 + Math.floor(packetPhase) * 17) % links.length];
-          const a = projected[edge[0]],
-            b = projected[edge[1]];
-          const t = packetPhase % 1;
-          const fade = Math.sin(t * Math.PI) * (0.35 + energy * 0.25);
-          const x = mix(a.x, b.x, t),
-            y = mix(a.y, b.y, t);
-          glow(x, y, 12, fade * 0.3);
-          ctx.fillStyle = color(fade);
-          ctx.beginPath();
-          ctx.arc(x, y, 1.8, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      }
+      drawSignals();
       nodeBuckets.forEach((bucket) => {
         bucket.length = 0;
       });
@@ -250,13 +333,22 @@
         });
         ctx.fill();
       });
-      projected.forEach((point, index) => {
-        if (index % 47 === 0 && point.z > 0.1) {
-          ctx.strokeStyle = color(0.18 + energy * 0.12);
-          ctx.beginPath();
-          ctx.arc(point.x, point.y, 5, 0, Math.PI * 2);
-          ctx.stroke();
-        }
+      hubs.forEach((index) => {
+        const point = projected[index];
+        if (
+          point.z < -0.25 ||
+          point.x < -20 ||
+          point.x > width + 20 ||
+          point.y < -20 ||
+          point.y > height + 20
+        )
+          return;
+        const depth = (point.z + 1) / 2;
+        glow(point.x, point.y, 15, depth * (0.35 + energy * 0.08));
+        ctx.fillStyle = color(0.5 + depth * 0.5);
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, 2.8, 0, Math.PI * 2);
+        ctx.fill();
       });
       ctx.strokeStyle = color(0.09);
       ctx.lineWidth = 0.7;
@@ -301,7 +393,7 @@
       tint = tint.map((channel, index) =>
         mix(channel, section.tint[index], paletteSmoothing),
       );
-      rotation += delta * 0.000045;
+      rotation += delta * 0.000022;
       phase += delta * 0.001;
       draw(energy);
     }
