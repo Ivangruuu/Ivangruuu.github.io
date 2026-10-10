@@ -285,5 +285,5 @@ body{isolation:isolate}
 
 .vlm-section{display:block}
 .vlm-section .card-category{color:var(--panel-accent)}
-.vlm-case{padding:32px 38px;background:#21192b}
+.vlm-case{padding:32px 38px;background:var(--surface)}
 @media(max-width:760px){.vlm-case{padding:26px 22px}}
