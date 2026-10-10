@@ -1668,18 +1668,6 @@ body {
   align-items: center;
   gap: 12px;
 }
-.hero-telegram {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 48px;
-  padding: 0 16px;
-  font-size: 14px;
-  color: var(--ink);
-}
-.hero-telegram:hover {
-  color: var(--accent);
-}
 @media (max-width: 760px) {
   .hero-grid {
     padding-block: 28px 32px;
@@ -1709,11 +1697,9 @@ body {
     font-size: 12px;
     gap: 8px;
   }
-  .hero-telegram {
+  .hero-contact {
     grid-column: 1/-1;
     justify-self: start;
-    padding: 0;
-    min-height: 40px;
   }
 }
 
@@ -2163,13 +2149,6 @@ body {
 .theme-nlp .card-tags .pill,
 .theme-nlp .language-case-image a {
   border-color: #806444;
-}
-
-.nlp-demo-note {
-  margin: 16px 0 0;
-  font-size: 13px;
-  line-height: 1.7;
-  color: var(--muted);
 }
 
 /* Progressive enhancement: native controls and navigation work without scripts. */

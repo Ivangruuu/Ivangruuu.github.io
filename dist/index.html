@@ -40,7 +40,7 @@
       type="image/svg+xml"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23c4f568'/%3E%3Cpath d='M18 17h7v30h-7zm14 0h7v12l8-12h8L44 32l12 15h-9l-8-12v12h-7z' fill='%2310120f'/%3E%3C/svg%3E"
     />
-    <link rel="stylesheet" href="./styles.css?v=4e6f612bea" />
+    <link rel="stylesheet" href="./styles.css?v=f6dd509474" />
     <script src="./app.js?v=a734c1049e" defer></script>
     <script src="./animation.js?v=7cc18ecd8f" defer></script>
   </head>
@@ -78,7 +78,7 @@
         <div class="hero-top">
           <span class="eyebrow"
             ><span class="status-dot"></span> ОТКРЫТ К ПРЕДЛОЖЕНИЯМ</span
-          ><span class="mono location">МОСКВА · УДАЛЁННО / ГИБРИД</span>
+          ><span class="mono location">МОСКВА · ОФИС / УДАЛЁННО / ГИБРИД</span>
         </div>
         <div class="hero-grid">
           <div class="hero-copy">
@@ -122,12 +122,8 @@
               <a class="button secondary" href="#work"
                 >Кейсы <span aria-hidden="true">↗</span></a
               >
-              <a
-                class="hero-telegram"
-                href="https://t.me/Ivangruu1"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Telegram <span aria-hidden="true">↗</span></a
+              <a class="button secondary hero-contact" href="#contact"
+                >Контакты <span aria-hidden="true">↗</span></a
               >
             </div>
           </div>
@@ -166,20 +162,11 @@
                 ритейла.
               </p>
               <p>
-                Работаю с пятью направлениями: CV, LLM, VLM, OCR и NLP. Обучаю
-                модели компьютерного зрения, развёртываю локальные языковые и
-                мультимодальные модели через Ollama и MLX, интегрирую их в
-                работающие системы.
-              </p>
-              <p>
-                Также решал задачи NLP: предобработка и классификация текстов,
-                анализ тональности и эмоций, извлечение сущностей, семантический
-                поиск и кластеризация.
-              </p>
-              <p>
-                Использую OpenCV и Tesseract / pytesseract для предобработки
-                изображений и распознавания текста на документах, фотографиях и
-                кадрах с камер.
+                Работаю с CV, LLM, VLM, OCR и NLP: обучаю модели компьютерного
+                зрения, распознаю текст на изображениях, анализирую и
+                классифицирую тексты. Развёртываю локальные языковые и
+                мультимодальные модели с использованием Ollama, MLX и PyTorch,
+                интегрирую их в работающие системы.
               </p>
               <div class="about-tags">
                 <span class="pill">CV</span><span class="pill">LLM</span
@@ -245,8 +232,8 @@
                 </li>
                 <li>
                   <strong>Локальные LLM/VLM.</strong> Развёртывание и интеграция
-                  моделей, настройка inference под оборудование заказчика,
-                  включая Apple Silicon и MLX.
+                  моделей с Ollama, MLX и PyTorch, настройка inference под
+                  оборудование заказчика.
                 </li>
               </ul>
               <a class="experience-cases-link" href="#work"
@@ -967,9 +954,8 @@
                 </div>
                 <h3 id="nlp-title">Обработка естественного языка</h3>
                 <p>
-                  В рамках учебных работ применял методы NLP: от предобработки
-                  текстов и частотного анализа до классификации, извлечения
-                  сущностей и семантического поиска.
+                  Методы NLP: от предобработки текстов и частотного анализа до
+                  классификации, извлечения сущностей и семантического поиска.
                 </p>
               </header>
               <section class="language-case" aria-labelledby="nlp-case-title">
@@ -989,15 +975,6 @@
                       >Открыть в полном размере ↗</span
                     ></a
                   >
-                  <figcaption>
-                    Пример частотного анализа: облако слов по статье «Обзор
-                    применения нейронных сетей» (Свито И.Л., Свито А.И., 2019).
-                  </figcaption>
-                  <p class="nlp-demo-note">
-                    Для этого примера извлечён текст научной статьи, удалены
-                    служебные слова и выполнена лемматизация. Размер слова в
-                    облаке отражает его частоту в тексте.
-                  </p>
                 </figure>
                 <div class="language-case-copy">
                   <div class="language-case-heading">
@@ -1017,10 +994,10 @@
                     <div class="cv-case-detail">
                       <dt>ЧТО ДЕЛАЛ</dt>
                       <dd>
-                        В рамках учебных работ подготавливал тексты к анализу и
-                        строил облака слов. Решал задачи классификации,
-                        определения тональности и эмоций, извлечения именованных
-                        сущностей, семантического поиска и кластеризации.
+                        Подготавливал тексты к анализу и строил облака слов.
+                        Решал задачи классификации, определения тональности и
+                        эмоций, извлечения именованных сущностей, семантического
+                        поиска и кластеризации.
                       </dd>
                     </div>
                     <div class="cv-case-detail">
@@ -1036,6 +1013,8 @@
                   </dl>
                   <div class="card-tags">
                     <span class="pill">Python</span
+                    ><span class="pill">spaCy</span
+                    ><span class="pill">BERT / RuBERT</span
                     ><span class="pill">Предобработка текста</span
                     ><span class="pill">Классификация</span
                     ><span class="pill">NER</span
@@ -1127,7 +1106,7 @@
             <span class="section-index">05 / ОБРАЗОВАНИЕ</span
             ><span class="mono">ALWAYS LEARNING</span>
           </div>
-          <h2 class="reveal">Основа. <em>И развитие.</em></h2>
+          <h2 class="reveal">Образование <em>и развитие.</em></h2>
           <div class="education-grid">
             <article class="education-main reveal">
               <span class="section-index">БАКАЛАВРИАТ · ВЫПУСК 2027</span>
@@ -1169,10 +1148,9 @@
           <div class="contact-bottom reveal">
             <div>
               <p>
-                Рассматриваю позиции ML Engineer.<br />Полная занятость или
-                стажировка,<br />удалённый или гибридный формат.
+                Рассматриваю позиции ML Engineer.<br />Полная занятость.<br />Офисный,
+                удалённый или гибридный формат.
               </p>
-              <p>Не готов к переезду, готов к редким командировкам.</p>
               <a class="contact-email" href="mailto:ivan.gru.05@mail.ru"
                 >ivan.gru.05@mail.ru</a
               ><button class="copy-button" aria-label="Скопировать email">
