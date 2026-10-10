@@ -111,6 +111,27 @@ test("English video controls play, pause and restore an expanded video", async (
   const clip = page.locator("#cv-case-line");
   const video = clip.locator("video");
   await video.scrollIntoViewIfNeeded();
+  await expect(video).toHaveAttribute("src", /cv-original-51\.mp4$/);
+  await expect
+    .poll(
+      () =>
+        video.evaluate(
+          (v) => v.readyState >= 2 && v.videoWidth > 0 && !v.error,
+        ),
+      { timeout: 15000 },
+    )
+    .toBe(true);
+  // Wait for lazy decoding and establish a paused baseline before the click;
+  // viewport autoplay may have started while Playwright scrolled to the clip.
+  if (!(await video.evaluate((v) => v.paused))) {
+    await clip
+      .getByRole("button", {
+        name: "Pause video: Counting products on a conveyor belt",
+        exact: true,
+      })
+      .click();
+  }
+  await expect.poll(() => video.evaluate((v) => v.paused)).toBe(true);
   await clip
     .getByRole("button", {
       name: "Play video: Counting products on a conveyor belt",
