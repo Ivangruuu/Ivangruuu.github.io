@@ -1,3 +1,5 @@
+// Static locale pages share the same functional enhancements.
+const ui = (ru, en) => (document.documentElement.lang === "en" ? en : ru);
 // Functional enhancements are independent of the decorative background.
 const motion = matchMedia("(prefers-reduced-motion: reduce)");
 const menuButton = document.querySelector(".menu-toggle");
@@ -5,7 +7,7 @@ const nav = document.querySelector(".nav");
 function closeMenu() {
   nav.classList.remove("open");
   menuButton.setAttribute("aria-expanded", "false");
-  menuButton.setAttribute("aria-label", "Открыть меню");
+  menuButton.setAttribute("aria-label", ui("Открыть меню", "Open menu"));
 }
 if (menuButton && nav) {
   document.documentElement.classList.add("nav-enhanced");
@@ -17,7 +19,7 @@ if (menuButton && nav) {
     menuButton.setAttribute("aria-expanded", String(open));
     menuButton.setAttribute(
       "aria-label",
-      open ? "Закрыть меню" : "Открыть меню",
+      open ? ui("Закрыть меню", "Close menu") : ui("Открыть меню", "Open menu"),
     );
   });
   nav.addEventListener("click", (event) => {
@@ -77,7 +79,7 @@ document.querySelector(".copy-button").addEventListener("click", async () => {
   const email = document.querySelector(".contact-email").textContent.trim();
   try {
     await navigator.clipboard.writeText(email);
-    toast("Email скопирован");
+    toast(ui("Email скопирован", "Email copied"));
   } catch {
     toast(`Email: ${email}`);
   }
@@ -96,10 +98,12 @@ function ensureLoaded(video) {
 }
 function syncButton(video) {
   const { button } = states.get(video);
-  button.textContent = video.paused ? "Воспроизвести" : "Пауза";
+  button.textContent = video.paused
+    ? ui("Воспроизвести", "Play")
+    : ui("Пауза", "Pause");
   button.setAttribute(
     "aria-label",
-    `${video.paused ? "Воспроизвести видео" : "Остановить видео"}: ${button.dataset.title}`,
+    `${video.paused ? ui("Воспроизвести видео", "Play video") : ui("Остановить видео", "Pause video")}: ${button.dataset.title}`,
   );
 }
 function reconcile(video) {
@@ -202,9 +206,9 @@ document.querySelectorAll(".original-video").forEach((clip) => {
   expandButton.type = "button";
   expandButton.setAttribute(
     "aria-label",
-    `Увеличить видео: ${button.dataset.title}`,
+    `${ui("Увеличить видео", "Expand video")}: ${button.dataset.title}`,
   );
-  expandButton.title = "На весь экран";
+  expandButton.title = ui("На весь экран", "Fullscreen");
   expandButton.innerHTML =
     '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   frame.append(expandButton);
@@ -220,7 +224,7 @@ document.querySelectorAll(".original-video").forEach((clip) => {
       const link = document.createElement("a");
       link.className = "video-fallback";
       link.href = video.dataset.src;
-      link.textContent = "Открыть видео ↗";
+      link.textContent = ui("Открыть видео ↗", "Open video \u2197");
       clip.append(link);
     }
   });
@@ -234,7 +238,10 @@ document.querySelectorAll(".original-video").forEach((clip) => {
         await video.play();
       } catch {
         toast(
-          "Не удалось воспроизвести видео. Попробуйте открыть его в полном размере.",
+          ui(
+            "Не удалось воспроизвести видео. Попробуйте открыть его в полном размере.",
+            "Unable to play the video. Try opening it fullscreen.",
+          ),
         );
       }
     } else {

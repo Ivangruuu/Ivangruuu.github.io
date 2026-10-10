@@ -2,6 +2,7 @@ import { readFile, writeFile, rm } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { format } from "prettier";
 import { sections } from "../src/render.mjs";
+import { englishPage } from "../src/localize.mjs";
 const hash = (text) =>
   createHash("sha256").update(text).digest("hex").slice(0, 10);
 const script = await readFile("src/app.js", "utf8");
@@ -16,6 +17,13 @@ html = html
   .replace("{{styleHash}}", hash(styles))
   .replace("{{faviconHash}}", hash(favicon));
 if (html.includes("{{")) throw new Error("Unresolved template placeholder");
+const translations = JSON.parse(
+  await readFile("src/translations.en.json", "utf8"),
+);
+await writeFile(
+  "dist/en.html",
+  await format(englishPage(html, translations), { parser: "html" }),
+);
 await writeFile("dist/index.html", await format(html, { parser: "html" }));
 await writeFile("dist/app.js", script);
 await writeFile("dist/animation.js", animation);

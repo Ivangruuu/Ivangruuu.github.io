@@ -2197,3 +2197,60 @@ body {
     flex-wrap: nowrap;
   }
 }
+
+/* Always-visible locale links also work without JavaScript. */
+.header {
+  gap: 16px;
+}
+.language-switch {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 3px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.language-switch a {
+  display: grid;
+  place-items: center;
+  min-width: 36px;
+  min-height: 32px;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+.language-switch a:hover {
+  color: var(--ink);
+  background: var(--line);
+}
+.language-switch a[aria-current="page"] {
+  color: var(--bg);
+  background: var(--accent);
+}
+@media (min-width: 761px) and (max-width: 1000px) {
+  .header .contact-link {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .header {
+    gap: 12px;
+  }
+  .header .contact-link {
+    margin-right: 0;
+  }
+}
+@media (max-width: 480px) {
+  .header .contact-link {
+    font-size: 12px;
+  }
+  .header .contact-link .small-star {
+    display: none;
+  }
+}
