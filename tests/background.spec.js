@@ -132,7 +132,7 @@ test("reduced motion keeps the background still while scrolling", async ({
   expect(await canvas.evaluate((c) => c.toDataURL())).toBe(before);
 });
 
-test("sphere grows through experience and shrinks after the stack midpoint", async ({
+test("sphere grows through experience and shrinks after the OCR bottom edge", async ({
   page,
 }) => {
   await observeBackground(page);
@@ -141,7 +141,13 @@ test("sphere grows through experience and shrinks after the stack midpoint", asy
       const rect = document.getElementById(id).getBoundingClientRect();
       return rect.top + scrollY + rect.height / 2 - innerHeight / 2;
     };
-    return { experience: midpoint("experience"), stack: midpoint("stack") };
+    return {
+      experience: midpoint("experience"),
+      ocr:
+        document.getElementById("ocr").getBoundingClientRect().bottom +
+        scrollY -
+        innerHeight / 2,
+    };
   });
   const sample = async (top) => {
     await page.evaluate(
@@ -153,8 +159,8 @@ test("sphere grows through experience and shrinks after the stack midpoint", asy
   };
   const before = await sample(positions.experience - 100);
   const growing = await sample(positions.experience + 600);
-  const large = await sample(positions.stack);
-  const shrinking = await sample(positions.stack + 700);
+  const large = await sample(positions.ocr);
+  const shrinking = await sample(positions.ocr + 700);
   expect(growing).toBeGreaterThan(before * 1.1);
   expect(growing).toBeLessThan(large * 0.9);
   expect(shrinking).toBeLessThan(large * 0.95);

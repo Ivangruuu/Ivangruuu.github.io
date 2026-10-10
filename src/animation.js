@@ -88,18 +88,14 @@
       };
       const experience = bounds("experience"),
         vision = bounds("vision"),
-        stack = bounds("stack"),
-        education = bounds("education");
+        ocr = bounds("ocr");
       growth.start = experience.top + experience.height * 0.5;
       growth.end = Math.max(
         vision.top + height * 0.45,
         growth.start + height * 1.5,
       );
-      growth.shrinkStart = stack.top + stack.height * 0.5;
-      growth.shrinkEnd = Math.max(
-        growth.shrinkStart + height * 1.5,
-        education.top + education.height * 0.65,
-      );
+      growth.shrinkStart = ocr.top + ocr.height;
+      growth.shrinkEnd = growth.shrinkStart + height * 1.5;
     }
     function activeSection() {
       const position = targetScroll + height * 0.42;
