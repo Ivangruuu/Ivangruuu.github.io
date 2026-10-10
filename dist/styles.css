@@ -263,6 +263,8 @@ body{isolation:isolate}
 .language-case{display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center}
 .language-case + .language-case{border-top:1px solid var(--line);background:#121e2540}
 .language-case-copy{min-width:0}
+.project-source-link{display:inline-flex;align-items:center;gap:12px;min-height:44px;margin-top:16px;font-size:14px;color:var(--panel-accent)}
+.project-source-link:hover{text-decoration:underline}
 .language-case-details{grid-template-columns:1fr;gap:18px}
 .language-question{padding:18px 22px;margin-bottom:24px;border-left:2px solid var(--panel-accent);background:#121e25;border-radius:0 7px 7px 0}
 .language-question .mono{font-size:10px}

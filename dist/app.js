@@ -74,6 +74,7 @@ function renderLanguage(item){
     <dl class="cv-case-details language-case-details">${detail('ЗАДАЧА',project.task)}${detail('КАК УСТРОЕНО',project.implementation)}${project.contribution?detail('МОЙ ВКЛАД',project.contribution):detail('ВОЗМОЖНОСТИ',project.features)}${detail('РЕЗУЛЬТАТ',project.result)}</dl>
     <div class="language-question"><span class="mono">ПРИМЕР ВОПРОСА</span><p>«${escapeHTML(project.example)}»</p></div>
     <div class="card-tags">${tags.map(tag=>`<span class="pill">${escapeHTML(tag)}</span>`).join('')}</div>
+    ${project.repository?`<a class="project-source-link" href="${escapeHTML(project.repository)}" target="_blank" rel="noopener noreferrer">Исходный код на GitHub <span aria-hidden="true">↗</span></a>`:''}
    </div>
   </section>`;
  }).join('');
@@ -97,18 +98,37 @@ function renderMultimodal(item){
   <div class="vlm-case">${renderMedia(item)}</div>
  </article>`;
 }
-const cards=content.expertise.map(item=>item.id==='vision'?renderCV(item):item.id==='language'?renderLanguage(item):item.id==='multimodal'?renderMultimodal(item):`<article id="${item.id}" class="expertise-card expertise-panel theme-${item.id} reveal"><div class="panel-art"><div class="panel-art-top"><span class="panel-abbreviation">${item.short}</span><span class="mono">/ ${item.number}</span></div><div class="card-visual">${content.media[item.id]?renderMedia(item):diagrams[item.diagram]}</div><div class="panel-flow">${item.flow.map(step=>`<span>${escapeHTML(step)}</span>`).join('<i aria-hidden="true">/</i>')}</div></div><div class="card-body"><div class="card-category">${item.category}<span>/${item.number}</span></div><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.description)}</p><ul class="panel-highlights">${item.highlights.map(point=>`<li>${escapeHTML(point)}</li>`).join('')}</ul><div class="card-tags">${item.tags.map(t=>`<span class="pill">${escapeHTML(t)}</span>`).join('')}</div><button class="detail-button" data-detail="${item.id}" aria-label="Подробнее: ${escapeHTML(item.title)}">Подробнее о направлении <span aria-hidden="true">+</span></button></div></article>`).join('');
+function renderOCR(item){
+ const detail=(label,value)=>`<div class="cv-case-detail"><dt>${label}</dt><dd>${escapeHTML(value)}</dd></div>`;
+ return `<article id="ocr" class="expertise-card expertise-panel theme-ocr language-section" aria-labelledby="ocr-title">
+  <header class="language-overview">
+   <div class="card-category">${item.category}<span>/${item.number}</span></div>
+   <h3 id="ocr-title">${escapeHTML(item.title)}</h3>
+   <p>Распознаю текст и числовые значения на изображениях и кадрах с камер. Использую YOLO для поиска области распознавания, EasyOCR и Tesseract / pytesseract — для извлечения текста.</p>
+  </header>
+  ${content.ocrCases.map((project,index)=>`<section id="${project.id}" class="language-case" aria-labelledby="${project.id}-title">
+   <figure class="language-case-image"><a href="${escapeHTML(project.image)}" target="_blank" rel="noopener noreferrer" aria-label="Открыть иллюстрацию: ${escapeHTML(project.title)}"><img src="${escapeHTML(project.image)}" alt="${escapeHTML(project.imageAlt)}" width="1672" height="941" loading="lazy"><span class="image-expand-hint">Открыть в полном размере ↗</span></a><figcaption>${escapeHTML(project.imageCaption)}</figcaption></figure>
+   <div class="language-case-copy">
+    <div class="language-case-heading"><span class="section-index">КЕЙС / ${String(index+1).padStart(2,'0')}</span></div>
+    <h4 id="${project.id}-title">${escapeHTML(project.title)}</h4>
+    <dl class="cv-case-details language-case-details">${detail('ЗАДАЧА',project.task)}${detail('КАК УСТРОЕНО',project.implementation)}${detail('РЕЗУЛЬТАТ',project.result)}</dl>
+    <div class="card-tags">${project.tags.map(tag=>`<span class="pill">${escapeHTML(tag)}</span>`).join('')}</div>
+   </div>
+  </section>`).join('')}
+ </article>`;
+}
+const cards=content.expertise.map(item=>item.id==='vision'?renderCV(item):item.id==='language'?renderLanguage(item):item.id==='multimodal'?renderMultimodal(item):item.id==='ocr'?renderOCR(item):`<article id="${item.id}" class="expertise-card expertise-panel theme-${item.id} reveal"><div class="panel-art"><div class="panel-art-top"><span class="panel-abbreviation">${item.short}</span><span class="mono">/ ${item.number}</span></div><div class="card-visual">${content.media[item.id]?renderMedia(item):diagrams[item.diagram]}</div><div class="panel-flow">${item.flow.map(step=>`<span>${escapeHTML(step)}</span>`).join('<i aria-hidden="true">/</i>')}</div></div><div class="card-body"><div class="card-category">${item.category}<span>/${item.number}</span></div><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.description)}</p><ul class="panel-highlights">${item.highlights.map(point=>`<li>${escapeHTML(point)}</li>`).join('')}</ul><div class="card-tags">${item.tags.map(t=>`<span class="pill">${escapeHTML(t)}</span>`).join('')}</div><button class="detail-button" data-detail="${item.id}" aria-label="Подробнее: ${escapeHTML(item.title)}">Подробнее о направлении <span aria-hidden="true">+</span></button></div></article>`).join('');
 const stacks=[
  ['CORE',['Python','PyTorch','NumPy','pandas','scikit-learn','SQL']],
  ['CV',['OpenCV','YOLO / YOLO Pose','ResNet','EfficientNet','ByteTrack','CVAT']],
  ['LLM',['Qwen','Llama','DeepSeek']],
  ['VLM',['Qwen3-VL','Llama 3.2 Vision','Gemma 3']],
- ['OCR',['OpenCV','Tesseract / pytesseract']],
+ ['OCR',['OpenCV','EasyOCR','Tesseract / pytesseract']],
  ['NLP',['Hugging Face Transformers','spaCy','Natasha','BERT / RuBERT']],
  ['RUNTIME',['Ollama','MLX','Apple Silicon']]
 ];
 document.querySelector('#sections').innerHTML=`
- <section id="about" class="section wrap"><div class="section-top"><span class="section-index">01 / ОБО МНЕ</span><span class="mono">ENGINEERING WITH PURPOSE</span></div><div class="about-grid about-profile"><div class="profile-column reveal"><p class="profile-name">Иван Груздев</p><div class="profile-photo">${content.portrait?`<img src="${escapeHTML(content.portrait)}" alt="Иван Груздев" width="640" height="640">`:''}</div></div><div class="about-copy reveal"><h2>Модели — это начало.<br><em>Результат —<br>работающая система.</em></h2><p>Я ML Engineer, занимаюсь <strong>компьютерным зрением, обработкой естественного языка, языковыми и мультимодальными моделями</strong>. Разрабатываю решения для промышленности, производства и ритейла.</p><p>Работаю с пятью направлениями: CV, LLM, VLM, OCR и NLP. Обучаю модели компьютерного зрения, развёртываю локальные языковые и мультимодальные модели через Ollama и MLX на Apple Silicon, интегрирую их в работающие системы.</p><p>Также решал задачи NLP: предобработка и классификация текстов, анализ тональности и эмоций, извлечение сущностей, семантический поиск и кластеризация.</p><p>Использую OpenCV и Tesseract / pytesseract для предобработки изображений и распознавания текста на документах, фотографиях и кадрах с камер.</p><div class="about-tags"><span class="pill">CV</span><span class="pill">LLM</span><span class="pill">VLM</span><span class="pill">OCR</span><span class="pill">NLP</span></div></div></div><div class="fact-strip reveal"><div><div class="fact-number">2024<span> →</span></div><p>В коммерческой ML-разработке с августа</p></div><div><div class="fact-number">End<span>-to-</span>end</div><p>Данные, модели и внедрение</p></div><div><div class="fact-number">5<span> сфер</span></div><p>CV · LLM · VLM · OCR · NLP</p></div></div></section>
+ <section id="about" class="section wrap"><div class="section-top"><span class="section-index">01 / ОБО МНЕ</span><span class="mono">ENGINEERING WITH PURPOSE</span></div><div class="about-grid about-profile"><div class="profile-column reveal"><p class="profile-name">Иван Груздев</p><div class="profile-photo">${content.portrait?`<img src="${escapeHTML(content.portrait)}" alt="Иван Груздев" width="640" height="640">`:''}</div></div><div class="about-copy reveal"><h2>Модели — это начало.<br><em>Результат —<br>работающая система.</em></h2><p>Я ML Engineer, занимаюсь <strong>компьютерным зрением, обработкой естественного языка, языковыми и мультимодальными моделями</strong>. Разрабатываю решения для промышленности, производства и ритейла.</p><p>Работаю с пятью направлениями: CV, LLM, VLM, OCR и NLP. Обучаю модели компьютерного зрения, развёртываю локальные языковые и мультимодальные модели через Ollama и MLX, интегрирую их в работающие системы.</p><p>Также решал задачи NLP: предобработка и классификация текстов, анализ тональности и эмоций, извлечение сущностей, семантический поиск и кластеризация.</p><p>Использую OpenCV и Tesseract / pytesseract для предобработки изображений и распознавания текста на документах, фотографиях и кадрах с камер.</p><div class="about-tags"><span class="pill">CV</span><span class="pill">LLM</span><span class="pill">VLM</span><span class="pill">OCR</span><span class="pill">NLP</span></div></div></div><div class="fact-strip reveal"><div><div class="fact-number">2024<span> →</span></div><p>В коммерческой ML-разработке с августа</p></div><div><div class="fact-number">End<span>-to-</span>end</div><p>Данные, модели и внедрение</p></div><div><div class="fact-number">5<span> сфер</span></div><p>CV · LLM · VLM · OCR · NLP</p></div></div></section>
  <section id="experience" class="section wrap experience-summary" aria-labelledby="experience-title">
   <div class="section-top"><span class="section-index">02 / ОПЫТ</span><span class="mono">APPLIED IN THE REAL WORLD</span></div>
   <div class="experience-summary-grid">
