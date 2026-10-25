@@ -198,22 +198,30 @@ export default {
     },
   ],
   stacks: [
-    ["CORE", ["Python", "PyTorch", "NumPy", "pandas", "scikit-learn", "SQL"]],
     [
-      "CV",
+      "CORE / ML",
       [
-        "OpenCV",
-        "YOLO / YOLO Pose",
-        "ResNet",
-        "EfficientNet",
-        "ByteTrack",
-        "CVAT",
+        "Python",
+        "PyTorch",
+        "NumPy",
+        "pandas",
+        "scikit-learn",
+        "Hugging Face Transformers",
       ],
     ],
-    ["LLM", ["Qwen", "Llama", "DeepSeek"]],
-    ["VLM", ["Qwen3-VL", "Llama 3.2 Vision", "Gemma 3"]],
-    ["OCR", ["OpenCV", "EasyOCR", "Tesseract / pytesseract"]],
-    ["NLP", ["Hugging Face Transformers", "spaCy", "Natasha", "BERT / RuBERT"]],
-    ["RUNTIME", ["Ollama", "MLX", "Apple Silicon"]],
+    [
+      "COMPUTER VISION",
+      ["YOLO", "OpenCV", "ResNet", "EfficientNet", "ByteTrack", "CVAT"],
+    ],
+    ["LLM / VLM", ["Qwen", "Qwen3-VL", "Llama", "DeepSeek", "LoRA", "QLoRA"]],
+    [
+      "NLP / OCR",
+      ["BERT / RuBERT", "spaCy", "EasyOCR", "PaddleOCR", "Tesseract"],
+    ],
+    ["INFERENCE / OPTIMIZATION", ["TensorRT", "Ollama", "MLX"]],
+    [
+      "BACKEND / DEPLOYMENT",
+      ["FastAPI", "PostgreSQL", "SQL", "Git", "GitLab", "Linux", "Docker"],
+    ],
   ],
 };
