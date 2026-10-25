@@ -181,7 +181,7 @@ export const sections = `
    </aside>
    <article class="job">
     <div class="job-date">АВГУСТ 2024 - НАСТОЯЩЕЕ ВРЕМЯ</div>
-    <div class="job-header"><h3>IT консалтинг</h3><span class="pill">Москва</span></div>
+    <div class="job-header"><h3>IT-Consulting “Smart Solutions”</h3><span class="pill">Москва</span></div>
     <p class="job-role">ML Engineer</p>
     <ul class="job-points">
      <li><strong>Данные и модели.</strong> Подготовка и разметка датасетов, обучение и дообучение моделей детекции, классификации и мультимодального анализа.</li>
