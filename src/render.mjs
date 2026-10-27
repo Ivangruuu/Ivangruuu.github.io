@@ -8,9 +8,15 @@ const escapeHTML = (value) =>
       ],
   );
 
+const emphasize = (value) =>
+  escapeHTML(value).replace(
+    /100 тыс\. записей|95%|1 000\+|50\+/g,
+    (match) => `<strong class="result-emphasis">${match}</strong>`,
+  );
+
 const detail = (label, value) =>
   value
-    ? `<div class="cv-case-detail"><dt>${escapeHTML(label)}</dt><dd>${escapeHTML(value)}</dd></div>`
+    ? `<div class="cv-case-detail"><dt>${escapeHTML(label)}</dt><dd>${emphasize(value)}</dd></div>`
     : "";
 
 function renderMedia(item, selectedClips = null, offset = 0) {
@@ -28,7 +34,7 @@ function renderMedia(item, selectedClips = null, offset = 0) {
               ]
                 .map(
                   ([label, value]) =>
-                    `<div class="cv-case-detail"><dt>${label}</dt><dd>${escapeHTML(value)}</dd></div>`,
+                    `<div class="cv-case-detail"><dt>${label}</dt><dd>${emphasize(value)}</dd></div>`,
                 )
                 .join("")}</dl>`
             : `<p class="media-summary">${escapeHTML(clip.summary)}</p>`
@@ -47,7 +53,7 @@ function renderCV(item) {
   <header class="cv-overview cv-overview-compact">
    <div class="card-category">${item.category}<span>/${item.number}</span></div>
    <h3 id="cv-title">${escapeHTML(item.title)}</h3>
-   <p class="cv-description">${escapeHTML(item.description)}</p>
+   <p class="cv-description">${emphasize(item.description)}</p>
    <nav class="cv-contents" aria-label="Кейсы Computer Vision">${clips.map((clip, index) => `<a href="#${clip.id}"><span>${String(index + 1).padStart(2, "0")}</span><strong>${escapeHTML(clip.shortTitle)}</strong><small>СМОТРЕТЬ КЕЙС</small></a>`).join("")}</nav>
   </header>
   <div class="cv-cases">${clips
@@ -100,7 +106,7 @@ function renderLanguage(item) {
   <header class="language-overview">
    <div class="card-category">${item.category}<span>/${item.number}</span></div>
    <h3>${escapeHTML(item.title)}</h3>
-   <p>${escapeHTML(item.description)}</p>
+   <p>${emphasize(item.description)}</p>
   </header>
   ${cases}
  </article>`;
@@ -111,7 +117,7 @@ function renderMultimodal(item) {
   <header class="language-overview">
    <div class="card-category">${item.category}<span>/${item.number}</span></div>
    <h3 id="vlm-title">${escapeHTML(item.title)}</h3>
-   <p>${escapeHTML(item.description)}</p>
+   <p>${emphasize(item.description)}</p>
   </header>
   <div class="vlm-case">${renderMedia(item)}</div>
  </article>`;
@@ -121,7 +127,7 @@ function renderOCR(item) {
   <header class="language-overview">
    <div class="card-category">${item.category}<span>/${item.number}</span></div>
    <h3 id="ocr-title">${escapeHTML(item.title)}</h3>
-   <p>${escapeHTML(item.description)}</p>
+   <p>${emphasize(item.description)}</p>
   </header>
   ${content.ocrCases
     .map(
@@ -147,7 +153,7 @@ function renderNLP(item) {
   <header class="language-overview">
    <div class="card-category">${item.category}<span>/${item.number}</span></div>
    <h3 id="nlp-title">${escapeHTML(item.title)}</h3>
-   <p>${escapeHTML(item.description)}</p>
+   <p>${emphasize(item.description)}</p>
   </header>
   <section class="language-case" aria-labelledby="nlp-case-title">
    <figure class="language-case-image"><a href="${escapeHTML(project.image)}" target="_blank" rel="noopener noreferrer" aria-label="Открыть облако слов в полном размере"><img src="${escapeHTML(project.image)}" alt="${escapeHTML(project.imageAlt)}" width="1600" height="1000" loading="lazy"><span class="image-expand-hint">Открыть в полном размере ↗</span></a></figure>
@@ -171,7 +177,7 @@ const cards = content.expertise
   .map((item) => renderers[item.id](item))
   .join("");
 export const sections = `
- <section id="about" class="section wrap"><div class="section-top"><span class="section-index">01 / ОБО МНЕ</span><span class="mono">ENGINEERING WITH PURPOSE</span></div><div class="about-grid about-profile"><div class="profile-column reveal"><p class="profile-name">Иван Груздев</p><div class="profile-photo">${content.portrait ? `<img src="${escapeHTML(content.portrait)}" alt="Иван Груздев" width="640" height="640">` : ""}</div></div><div class="about-copy reveal"><h2>Модели - это начало.<br><em>Результат - работающая система.</em></h2><p>Я ML Engineer, занимаюсь <strong>компьютерным зрением, обработкой естественного языка, языковыми и мультимодальными моделями</strong>. Разрабатываю решения для промышленности, производства и ритейла.</p><p>Работаю с CV, LLM, VLM, OCR и NLP: обучаю модели компьютерного зрения, распознаю текст на изображениях, анализирую и классифицирую тексты. Развёртываю локальные языковые и мультимодальные модели с использованием Ollama, MLX и PyTorch, интегрирую их в работающие системы.</p><div class="about-tags"><span class="pill">CV</span><span class="pill">LLM</span><span class="pill">VLM</span><span class="pill">OCR</span><span class="pill">NLP</span></div></div></div><div class="fact-strip reveal"><div><div class="fact-number">2024<span> →</span></div><p>В коммерческой ML-разработке с августа</p></div><div><div class="fact-number">End<span>-to-</span>end</div><p>Данные, модели и внедрение</p></div><div><div class="fact-number">5<span> сфер</span></div><p>CV · LLM · VLM · OCR · NLP</p></div></div></section>
+ <section id="about" class="section wrap"><div class="section-top"><span class="section-index">01 / ОБО МНЕ</span><span class="mono">ENGINEERING WITH PURPOSE</span></div><div class="about-grid about-profile"><div class="profile-column reveal"><p class="profile-name">Иван Груздев</p><div class="profile-photo">${content.portrait ? `<img src="${escapeHTML(content.portrait)}" alt="Иван Груздев" width="640" height="640">` : ""}</div></div><div class="about-copy reveal"><h2>Модели - это начало.<br><em>Результат - работающая система.</em></h2><p>Я ML Engineer, занимаюсь <strong>компьютерным зрением, обработкой естественного языка, языковыми и мультимодальными моделями</strong>. Разрабатываю решения для промышленности, производства и ритейла.</p><p>Работаю с CV, LLM, VLM, OCR и NLP: обучаю модели компьютерного зрения, распознаю текст на изображениях, анализирую и классифицирую тексты. Развёртываю локальные языковые и мультимодальные модели с использованием Ollama, MLX и PyTorch, интегрирую их в работающие системы.</p><div class="about-tags"><span class="pill">CV</span><span class="pill">LLM</span><span class="pill">VLM</span><span class="pill">OCR</span><span class="pill">NLP</span></div></div></div><div class="fact-strip result-strip reveal"><div><div class="fact-number">100<span> тыс.+</span></div><p>Записей в LLM-аналитике событий</p></div><div><div class="fact-number">95<span>%</span></div><p>VLM Accuracy · тест на 1 000+ кадров</p></div><div><div class="fact-number">50<span>+</span></div><p>Камер суммарно по CV-проектам</p></div></div></section>
  <section id="experience" class="section wrap experience-summary" aria-labelledby="experience-title">
   <div class="section-top"><span class="section-index">02 / ОПЫТ</span><span class="mono">APPLIED IN THE REAL WORLD</span></div>
   <div class="experience-summary-grid">
@@ -186,8 +192,9 @@ export const sections = `
     <ul class="job-points">
      <li><strong>Данные и модели.</strong> Подготовка и разметка датасетов, обучение и дообучение моделей детекции, классификации и мультимодального анализа.</li>
      <li><strong>Прикладные пайплайны.</strong> Обработка изображений и RTSP-потоков, трекинг, ROI-зоны, подсчёт объектов и обработка событий.</li>
-     <li><strong>Интеграция и поддержка.</strong> Подключение CV-сервисов к базам данных и внешним системам, логирование, мониторинг и восстановление после сбоев.</li>
-     <li><strong>Локальные LLM/VLM.</strong> Развёртывание и интеграция моделей с Ollama, MLX и PyTorch, настройка inference под оборудование заказчика.</li>
+     <li><strong>Интеграция и поддержка.</strong> Интеграция ML-сервисов с API, PostgreSQL и внешними системами, бизнес-логика, логирование, мониторинг и восстановление после сбоев.</li>
+     <li><strong>Локальные LLM/VLM.</strong> Развёртывание Llama, Qwen, Qwen-VL и DeepSeek, настройка инференса и дообучение с LoRA/QLoRA.</li>
+    <li><strong>Качество и производительность.</strong> Оптимизация инференса и оценка моделей: Precision, Recall, F1-score, mAP и IoU.</li>
     </ul>
     <a class="experience-cases-link" href="#work">Направления и примеры работ <span aria-hidden="true">↗</span></a>
    </article>

@@ -47,7 +47,7 @@
     />
     <title>Ivan Gruzdev - ML Engineer</title>
     <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=42be1ca228" />
-    <link rel="stylesheet" href="./styles.css?v=3c52c97c68" />
+    <link rel="stylesheet" href="./styles.css?v=ccc137df11" />
     <script src="./app.js?v=0f61694546" defer></script>
     <script src="./animation.js?v=8b8e11ca0c" defer></script>
   </head>
@@ -118,7 +118,7 @@
             <div class="hero-actions">
               <a
                 class="button primary"
-                href="./assets/ivan-gruzdev-resume.pdf?v=d4d3cda671"
+                href="./assets/ivan-gruzdev-resume.pdf?v=7f7824dc1c"
                 download="Ivan-Gruzdev-ML-Engineer.pdf"
                 >Resume PDF (RU)
                 <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -179,18 +179,18 @@
               </div>
             </div>
           </div>
-          <div class="fact-strip reveal">
+          <div class="fact-strip result-strip reveal">
             <div>
-              <div class="fact-number">2024<span> →</span></div>
-              <p>In professional ML development since August</p>
+              <div class="fact-number">100<span> k+</span></div>
+              <p>Records in LLM event analytics</p>
             </div>
             <div>
-              <div class="fact-number">End<span>-to-</span>end</div>
-              <p>Data, models and deployment</p>
+              <div class="fact-number">95<span>%</span></div>
+              <p>VLM accuracy · tested on 1,000+ frames</p>
             </div>
             <div>
-              <div class="fact-number">5<span> areas</span></div>
-              <p>CV · LLM · VLM · OCR · NLP</p>
+              <div class="fact-number">50<span>+</span></div>
+              <p>Cameras across all CV projects</p>
             </div>
           </div>
         </section>
@@ -232,14 +232,19 @@
                   counting and event processing.
                 </li>
                 <li>
-                  <strong>Integration and support.</strong> Connecting CV
-                  services to databases and external systems; logging,
-                  monitoring and recovery from failures.
+                  <strong>Integration and support.</strong> Integration of ML
+                  services with APIs, PostgreSQL and external systems, business
+                  logic, logging, monitoring and failure recovery.
                 </li>
                 <li>
-                  <strong>Local LLMs/VLMs.</strong> Deploying and integrating
-                  models with Ollama, MLX and PyTorch, and tuning inference for
-                  the client&#39;s hardware.
+                  <strong>Local LLMs/VLMs.</strong> Deployment of Llama, Qwen,
+                  Qwen-VL and DeepSeek, inference configuration and fine-tuning
+                  with LoRA/QLoRA.
+                </li>
+                <li>
+                  <strong>Quality and performance.</strong> Inference
+                  optimization and model evaluation: Precision, Recall,
+                  F1-score, mAP and IoU.
                 </li>
               </ul>
               <a class="experience-cases-link" href="#work"
@@ -273,10 +278,12 @@
                 <div class="card-category">COMPUTER VISION<span>/01</span></div>
                 <h3 id="cv-title">Computer vision</h3>
                 <p class="cv-description">
-                  I develop video analytics systems for detection,
-                  classification, tracking and pose estimation. I work on data,
-                  model training, video stream processing and integrating
-                  results into practical systems.
+                  Delivered solutions for a total of
+                  <strong class="result-emphasis">50+</strong> cameras at
+                  industrial and manufacturing sites: detection, classification,
+                  tracking, product counting and process monitoring. Full
+                  development cycle, from data and training to ROI logic,
+                  database integration and monitoring.
                 </p>
                 <nav class="cv-contents" aria-label="Computer Vision projects">
                   <a href="#cv-case-line"
@@ -344,7 +351,7 @@
                     <div class="cv-case-meta">
                       <span class="section-index">PROJECT / 01</span
                       ><span class="cv-case-status"
-                        >40+ pieces of equipment digitized</span
+                        >Deployed and operational</span
                       >
                     </div>
                     <h4 id="cv-case-line-title">
@@ -376,9 +383,11 @@
                       <div class="cv-case-detail">
                         <dt>RESULT</dt>
                         <dd>
-                          Approximately 95% counting accuracy based on my
-                          cross-check of the system&#39;s results. This is an
-                          indicative estimate from practical validation.
+                          Approximately
+                          <strong class="result-emphasis">95%</strong> counting
+                          accuracy based on my comparison of system results with
+                          actual counts. An approximate estimate from practical
+                          checks.
                         </dd>
                       </div>
                     </dl>
@@ -545,7 +554,7 @@
                     <div class="cv-case-meta">
                       <span class="section-index">PROJECT / 03</span
                       ><span class="cv-case-status"
-                        >Deployed and operational on 50+ cameras</span
+                        >Deployed and operational</span
                       >
                     </div>
                     <h4 id="cv-case-pose-title">
@@ -572,9 +581,10 @@
                       <div class="cv-case-detail">
                         <dt>SCALE</dt>
                         <dd>
-                          Worked on people-counting tasks across more than 50
-                          cameras; posture analysis was applied to a subset of
-                          them.
+                          People counting, posture analysis and body-part
+                          visibility. Total scope across all CV projects:
+                          <strong class="result-emphasis">50+</strong> cameras
+                          serving different tasks.
                         </dd>
                       </div>
                     </dl>
@@ -650,11 +660,11 @@
                       <dt>HOW IT WORKS</dt>
                       <dd>
                         The web platform receives events from two video
-                        analytics sources and stores them as JSON. In a
-                        dedicated chat window, users ask questions about each
-                        source: what happened, where and when. Numerical metrics
-                        are calculated in code, while Qwen 3.5 9B generates
-                        answers based on the data.
+                        analytics sources, processes JSON and integrates with a
+                        database. Users ask questions about each source in a
+                        dedicated chat: what happened, where and when. Code
+                        calculates quantitative metrics, while Qwen 3.5 9B
+                        generates answers based on the data.
                       </dd>
                     </div>
                     <div class="cv-case-detail">
@@ -668,9 +678,11 @@
                     <div class="cv-case-detail">
                       <dt>RESULT</dt>
                       <dd>
-                        One interface for querying recorded events and
-                        statistics, with separate source and time range
-                        selection.
+                        The system works with more than
+                        <strong class="result-emphasis">100,000 records</strong
+                        >: natural-language queries, database integration and
+                        automated analytical reports reduce the need for manual
+                        data analysis.
                       </dd>
                     </div>
                   </dl>
@@ -864,9 +876,13 @@
                         <div class="cv-case-detail">
                           <dt>RESULT</dt>
                           <dd>
-                            The system automatically records signs of equipment
-                            washing and sends the result to production
-                            monitoring.
+                            Accuracy
+                            <strong class="result-emphasis">95%</strong> on a
+                            reference test set (Golden Dataset) of
+                            <strong class="result-emphasis">1 000+</strong>
+                            annotated frames. The system analyzes production
+                            operations approximately every 3 minutes and sends
+                            results to production monitoring.
                           </dd>
                         </div>
                       </dl>
@@ -1071,7 +1087,9 @@
               <div class="stack-row">
                 <span class="stack-label">COMPUTER VISION</span>
                 <div class="stack-items">
-                  <span class="pill">YOLO</span><span class="pill">OpenCV</span
+                  <span class="pill">YOLO</span><span class="pill">RF-DETR</span
+                  ><span class="pill">DINOv2</span
+                  ><span class="pill">OpenCV</span
                   ><span class="pill">ResNet</span
                   ><span class="pill">EfficientNet</span
                   ><span class="pill">ByteTrack</span

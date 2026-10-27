@@ -2253,3 +2253,50 @@ body {
     display: none;
   }
 }
+
+/* Evidence from the HH resume, with the scope kept beside each figure. */
+.result-strip .fact-number {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.result-strip .fact-number span {
+  font-size: 0.7em;
+}
+.result-emphasis {
+  color: var(--accent);
+  font-weight: 700;
+}
+@media (max-width: 420px) {
+  .result-strip {
+    gap: 14px;
+  }
+  .result-strip .fact-number {
+    font-size: clamp(25px, 8vw, 32px);
+  }
+}
+@media (max-width: 540px) {
+  .result-strip {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-top: 8px;
+  }
+  .result-strip > div {
+    display: grid;
+    grid-template-columns: minmax(138px, 0.8fr) 1fr;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .result-strip .fact-number {
+    font-size: 32px;
+    white-space: nowrap;
+  }
+  .result-strip p {
+    margin: 0;
+    font-size: 12px;
+  }
+}
+.result-emphasis {
+  white-space: nowrap;
+}

@@ -47,7 +47,7 @@
     />
     <title>Иван Груздев - ML Engineer</title>
     <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=42be1ca228" />
-    <link rel="stylesheet" href="./styles.css?v=3c52c97c68" />
+    <link rel="stylesheet" href="./styles.css?v=ccc137df11" />
     <script src="./app.js?v=0f61694546" defer></script>
     <script src="./animation.js?v=8b8e11ca0c" defer></script>
   </head>
@@ -120,7 +120,7 @@
             <div class="hero-actions">
               <a
                 class="button primary"
-                href="./assets/ivan-gruzdev-resume.pdf?v=d4d3cda671"
+                href="./assets/ivan-gruzdev-resume.pdf?v=7f7824dc1c"
                 download="Иван-Груздев-ML-Engineer.pdf"
                 >Резюме PDF
                 <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -182,18 +182,18 @@
               </div>
             </div>
           </div>
-          <div class="fact-strip reveal">
+          <div class="fact-strip result-strip reveal">
             <div>
-              <div class="fact-number">2024<span> →</span></div>
-              <p>В коммерческой ML-разработке с августа</p>
+              <div class="fact-number">100<span> тыс.+</span></div>
+              <p>Записей в LLM-аналитике событий</p>
             </div>
             <div>
-              <div class="fact-number">End<span>-to-</span>end</div>
-              <p>Данные, модели и внедрение</p>
+              <div class="fact-number">95<span>%</span></div>
+              <p>VLM Accuracy · тест на 1 000+ кадров</p>
             </div>
             <div>
-              <div class="fact-number">5<span> сфер</span></div>
-              <p>CV · LLM · VLM · OCR · NLP</p>
+              <div class="fact-number">50<span>+</span></div>
+              <p>Камер суммарно по CV-проектам</p>
             </div>
           </div>
         </section>
@@ -233,14 +233,20 @@
                   событий.
                 </li>
                 <li>
-                  <strong>Интеграция и поддержка.</strong> Подключение
-                  CV-сервисов к базам данных и внешним системам, логирование,
-                  мониторинг и восстановление после сбоев.
+                  <strong>Интеграция и поддержка.</strong> Интеграция
+                  ML-сервисов с API, PostgreSQL и внешними системами,
+                  бизнес-логика, логирование, мониторинг и восстановление после
+                  сбоев.
                 </li>
                 <li>
-                  <strong>Локальные LLM/VLM.</strong> Развёртывание и интеграция
-                  моделей с Ollama, MLX и PyTorch, настройка inference под
-                  оборудование заказчика.
+                  <strong>Локальные LLM/VLM.</strong> Развёртывание Llama, Qwen,
+                  Qwen-VL и DeepSeek, настройка инференса и дообучение с
+                  LoRA/QLoRA.
+                </li>
+                <li>
+                  <strong>Качество и производительность.</strong> Оптимизация
+                  инференса и оценка моделей: Precision, Recall, F1-score, mAP и
+                  IoU.
                 </li>
               </ul>
               <a class="experience-cases-link" href="#work"
@@ -271,10 +277,12 @@
                 <div class="card-category">COMPUTER VISION<span>/01</span></div>
                 <h3 id="cv-title">Компьютерное зрение</h3>
                 <p class="cv-description">
-                  Разрабатываю системы видеоаналитики: детекцию, классификацию,
-                  трекинг и оценку позы. Работаю с данными, обучением моделей,
-                  обработкой видеопотоков и интеграцией результатов в прикладные
-                  системы.
+                  Суммарно реализовал решения для
+                  <strong class="result-emphasis">50+</strong> камер на
+                  промышленных и производственных объектах: детекция,
+                  классификация, трекинг, подсчёт продукции и контроль
+                  технологических операций. Полный цикл — от данных и обучения
+                  до ROI-логики, интеграции с БД и мониторинга.
                 </p>
                 <nav class="cv-contents" aria-label="Кейсы Computer Vision">
                   <a href="#cv-case-line"
@@ -341,9 +349,7 @@
                   <div class="cv-case-copy">
                     <div class="cv-case-meta">
                       <span class="section-index">КЕЙС / 01</span
-                      ><span class="cv-case-status"
-                        >Оцифровано 40+ единиц оборудования</span
-                      >
+                      ><span class="cv-case-status">Внедрено и работает</span>
                     </div>
                     <h4 id="cv-case-line-title">
                       Подсчёт продукции на конвейере
@@ -375,9 +381,11 @@
                       <div class="cv-case-detail">
                         <dt>РЕЗУЛЬТАТ</dt>
                         <dd>
-                          Около 95% точности подсчёта по моей сверке результатов
-                          работы системы. Ориентировочная оценка, полученная при
-                          проверке на практике.
+                          Около
+                          <strong class="result-emphasis">95%</strong> точности
+                          подсчёта по моей сверке результатов работы системы.
+                          Ориентировочная оценка, полученная при проверке на
+                          практике.
                         </dd>
                       </div>
                     </dl>
@@ -538,9 +546,7 @@
                   <div class="cv-case-copy">
                     <div class="cv-case-meta">
                       <span class="section-index">КЕЙС / 03</span
-                      ><span class="cv-case-status"
-                        >Внедрено и работает на 50+ камерах</span
-                      >
+                      ><span class="cv-case-status">Внедрено и работает</span>
                     </div>
                     <h4 id="cv-case-pose-title">
                       Подсчёт людей и анализ положения в кадре
@@ -565,8 +571,10 @@
                       <div class="cv-case-detail">
                         <dt>МАСШТАБ</dt>
                         <dd>
-                          Работал с задачами подсчёта людей более чем на 50
-                          камерах; анализ положения применялся на части из них.
+                          Подсчёт людей, анализ положения и видимости частей
+                          тела. Суммарный масштаб всех CV-проектов —
+                          <strong class="result-emphasis">50+</strong> камер с
+                          различными задачами.
                         </dd>
                       </div>
                     </dl>
@@ -638,11 +646,11 @@
                       <dt>КАК УСТРОЕНО</dt>
                       <dd>
                         Веб-платформа получает события из двух источников
-                        видеоаналитики и сохраняет их в формате JSON. В
-                        отдельном окне чата пользователь задаёт вопросы по
-                        каждому источнику: что, где и во сколько происходило.
-                        Количественные показатели рассчитываются кодом, а Qwen
-                        3.5 9B формирует ответы на основе данных.
+                        видеоаналитики, обрабатывает JSON и интегрируется с
+                        базой данных. В отдельном окне чата пользователь задаёт
+                        вопросы по каждому источнику: что, где и во сколько
+                        происходило. Количественные показатели рассчитываются
+                        кодом, а Qwen 3.5 9B формирует ответы на основе данных.
                       </dd>
                     </div>
                     <div class="cv-case-detail">
@@ -656,8 +664,11 @@
                     <div class="cv-case-detail">
                       <dt>РЕЗУЛЬТАТ</dt>
                       <dd>
-                        Вопросы к накопленным событиям и статистике в одном
-                        интерфейсе, с отдельным выбором источника и периода.
+                        Система работает с более чем
+                        <strong class="result-emphasis">100 тыс. записей</strong
+                        >: запросы на естественном языке, интеграция с БД и
+                        автоматическое формирование аналитических отчётов
+                        сокращают необходимость ручного анализа данных.
                       </dd>
                     </div>
                   </dl>
@@ -854,9 +865,13 @@
                         <div class="cv-case-detail">
                           <dt>РЕЗУЛЬТАТ</dt>
                           <dd>
-                            Система автоматически фиксирует признаки мойки
-                            оборудования и передаёт результат в производственный
-                            мониторинг.
+                            Accuracy
+                            <strong class="result-emphasis">95%</strong> на
+                            эталонной тестовой выборке (Golden Dataset) из
+                            <strong class="result-emphasis">1 000+</strong>
+                            размеченных кадров. Система анализирует
+                            технологические операции с интервалом около 3 минут
+                            и передаёт результат в производственный мониторинг.
                           </dd>
                         </div>
                       </dl>
@@ -1061,7 +1076,9 @@
               <div class="stack-row">
                 <span class="stack-label">COMPUTER VISION</span>
                 <div class="stack-items">
-                  <span class="pill">YOLO</span><span class="pill">OpenCV</span
+                  <span class="pill">YOLO</span><span class="pill">RF-DETR</span
+                  ><span class="pill">DINOv2</span
+                  ><span class="pill">OpenCV</span
                   ><span class="pill">ResNet</span
                   ><span class="pill">EfficientNet</span
                   ><span class="pill">ByteTrack</span
