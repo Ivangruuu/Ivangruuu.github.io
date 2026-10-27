@@ -55,7 +55,7 @@ for value in ['+7 (905) 148-48-91','ivan.gru.05@mail.ru']:
     text(x,y,value,8);y-=14
 text(x,y,'ivangruuu.github.io',8,accent)
 c.linkURL('https://ivangruuu.github.io/',(x,y-2,180,y+10),relative=0);y-=21
-for value in ['Москва · офис / удалённо / гибрид','Полная занятость','От 150 000 руб. на руки']:
+for value in ['Москва · офис / удалённо / гибрид','Полная занятость','От 130 000 руб. на руки']:
     text(x,y,value,7.3,accent if value.startswith('От') else muted);y-=12
 
 y-=16;label(x,y,'02 / СТЕК');y-=15
